@@ -5,6 +5,7 @@ target 'DCHImageTurbo' do
 
 pod 'SDWebImage', '~> 3.7.0'
 pod 'Tourbillon', '~> 1.0.0'
+pod 'libextobjc', '~> 0.4.1'
 
 end
 

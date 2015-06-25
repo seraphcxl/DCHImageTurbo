@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D07FD281B3C244F000218F4 /* DCHImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07FD271B3C244F000218F4 /* DCHImageProcessor.m */; };
 		8DBAA7241B3BE8E20024A0F3 /* DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DBAA7231B3BE8E20024A0F3 /* DCHImageTurbo.h */; };
 		8DBAA7261B3BE8E20024A0F3 /* DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBAA7251B3BE8E20024A0F3 /* DCHImageTurbo.m */; };
 		8DBAA72C1B3BE8E20024A0F3 /* libDCHImageTurbo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */; };
@@ -40,6 +41,8 @@
 		0B93A8BE13D3465168264080 /* Pods-DCHImageTurbo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCHImageTurbo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DCHImageTurbo/Pods-DCHImageTurbo.debug.xcconfig"; sourceTree = "<group>"; };
 		48276C4CF3CA5BA4555F5499 /* Pods-DCHImageTurbo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCHImageTurbo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCHImageTurbo/Pods-DCHImageTurbo.release.xcconfig"; sourceTree = "<group>"; };
 		82D3730F1BFAF19FD8800E93 /* libPods-DCHImageTurbo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DCHImageTurbo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D07FD261B3C244F000218F4 /* DCHImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageProcessor.h; sourceTree = "<group>"; };
+		8D07FD271B3C244F000218F4 /* DCHImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHImageProcessor.m; sourceTree = "<group>"; };
 		8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCHImageTurbo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBAA7231B3BE8E20024A0F3 /* DCHImageTurbo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCHImageTurbo.h; sourceTree = "<group>"; };
 		8DBAA7251B3BE8E20024A0F3 /* DCHImageTurbo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCHImageTurbo.m; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 		8DBAA7221B3BE8E20024A0F3 /* DCHImageTurbo */ = {
 			isa = PBXGroup;
 			children = (
+				8D07FD261B3C244F000218F4 /* DCHImageProcessor.h */,
+				8D07FD271B3C244F000218F4 /* DCHImageProcessor.m */,
 				8DBAA7231B3BE8E20024A0F3 /* DCHImageTurbo.h */,
 				8DBAA7251B3BE8E20024A0F3 /* DCHImageTurbo.m */,
 			);
@@ -252,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D07FD281B3C244F000218F4 /* DCHImageProcessor.m in Sources */,
 				8DBAA7261B3BE8E20024A0F3 /* DCHImageTurbo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
