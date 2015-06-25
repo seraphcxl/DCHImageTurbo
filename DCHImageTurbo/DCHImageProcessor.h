@@ -1,6 +1,6 @@
 //
 //  DCHImageProcessor.h
-//  Kaleidoscope-of-500px
+//  DCHImageTurbo
 //
 //  Created by Derek Chen on 6/5/15.
 //  Copyright (c) 2015 Derek Chen. All rights reserved.

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const DCHImageTurboErrorDomain;
+
 @interface DCHImageTurboCommonConstants : NSObject
 
 @end

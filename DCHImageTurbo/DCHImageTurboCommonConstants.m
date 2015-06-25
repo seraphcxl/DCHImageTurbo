@@ -8,6 +8,8 @@
 
 #import "DCHImageTurboCommonConstants.h"
 
+NSString * const DCHImageTurboErrorDomain = @"DCHImageTurboErrorDomain";
+
 @implementation DCHImageTurboCommonConstants
 
 @end
