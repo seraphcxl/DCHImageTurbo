@@ -4,6 +4,7 @@ platform :ios, '7.0'
 target 'DCHImageTurbo' do
 
 pod 'SDWebImage', '~> 3.7.0'
+pod 'Tourbillon', '~> 1.0.0'
 
 end
 
