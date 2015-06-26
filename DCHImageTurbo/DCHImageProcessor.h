@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+extern NSString * const DCHImageTurboKey_ResizeWidth;  // NSNumber
+extern NSString * const DCHImageTurboKey_ResizeHeight;  // NSNumber
+extern NSString * const DCHImageTurboKey_ResizeScale;  // NSNumber
+extern NSString * const DCHImageTurboKey_CornerRadius;  // NSNumber
+extern NSString * const DCHImageTurboKey_BorderColor;  // UIColor
+extern NSString * const DCHImageTurboKey_BorderWidth;  // NSNumber
+
 //typedef void(^DCHImageProcessCompletionBlock)(NSString *UUID, UIImage *originalImage, UIImage *image, NSDictionary *info, NSError *error);
 //
 //@interface DCHImageProcessOperation : NSOperation
@@ -28,6 +35,8 @@
 //@end
 
 @interface DCHImageProcessor : NSObject
+
++ (UIImage *)customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
 
 #pragma mark - GaussianBlur
 + (NSOperationQueue *)sharedGaussianBlurQueue;

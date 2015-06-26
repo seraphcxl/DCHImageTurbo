@@ -9,6 +9,13 @@
 #import "DCHImageProcessor.h"
 #import <Tourbillon/DCHTourbillon.h>
 
+NSString * const DCHImageTurboKey_ResizeWidth = @"DCHImageTurboKey_ResizeWidth";  // NSNumber
+NSString * const DCHImageTurboKey_ResizeHeight = @"DCHImageTurboKey_ResizeHeight";  // NSNumber
+NSString * const DCHImageTurboKey_ResizeScale = @"DCHImageTurboKey_ResizeScale";  // NSNumber
+NSString * const DCHImageTurboKey_CornerRadius = @"DCHImageTurboKey_CornerRadius";  // NSNumber
+NSString * const DCHImageTurboKey_BorderColor = @"DCHImageTurboKey_BorderColor";  // UIColor
+NSString * const DCHImageTurboKey_BorderWidth = @"DCHImageTurboKey_BorderWidth";  // NSNumber
+
 //@interface DCHImageProcessOperation ()
 //
 //@property (nonatomic, strong) NSString *UUID;
@@ -53,6 +60,25 @@
 //@end
 
 @implementation DCHImageProcessor
+
++ (UIImage *)customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode {
+    UIImage *result = nil;
+    do {
+        if (DCH_IsEmpty(image) || DCH_IsEmpty(paramsDic)) {
+            break;
+        }
+        NSNumber *resizeWidth = [paramsDic objectForKey:DCHImageTurboKey_ResizeWidth];
+        NSNumber *resizeHeight = [paramsDic objectForKey:DCHImageTurboKey_ResizeHeight];
+        NSNumber *resizeScale = [paramsDic objectForKey:DCHImageTurboKey_ResizeScale];
+        if (!DCH_IsEmpty(resizeWidth) && !DCH_IsEmpty(resizeHeight) && !DCH_IsEmpty(resizeScale)) {
+            CGSize size = CGSizeMake(resizeWidth.floatValue, resizeHeight.floatValue);
+            if (!CGSizeEqualToSize(size, CGSizeZero)) {
+                result = [DCHImageProcessor applyResize:image toSize:size withContentMode:contentMode allowZoomOut:YES];
+            }
+        }
+    } while (NO);
+    return result;
+}
 
 + (NSOperationQueue *)sharedGaussianBlurQueue {
     static dispatch_once_t onceToken;
