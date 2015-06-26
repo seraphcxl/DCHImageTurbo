@@ -101,6 +101,7 @@ static char kDCHImageTurboHighlightedImageURLKey;
                                         }
                                     } else {
                                         [NSThread dch_runInBackground:^{
+                                            @strongify(self)
                                             resizedImage = [DCHImageProcessor applyResize:image toSize:imageSize withContentMode:self.contentMode allowZoomOut:allowZoomOut];
                                             if (resizedImage) {
                                                 BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
@@ -156,17 +157,86 @@ static char kDCHImageTurboHighlightedImageURLKey;
         objc_setAssociatedObject(self, &kDCHImageTurboHighlightedImageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         if (url) {
+            NSString *resizedImageKey = [NSString stringWithFormat:@"%@_%@", url, [self dch_imageSignatureWithSize:imageSize andScale:[UIScreen mainScreen].scale]];
+            
             @weakify(self)
-            id<SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                @strongify(self)
-                do {
-                    ;
-                } while (NO);
-            }];
-            [self sd_setImageLoadOperation:operation forKey:@"highlightedImage"];
+            
+            // Find from memory cache
+            __block UIImage *resizedImage = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:resizedImageKey];
+            if (!DCH_IsEmpty(resizedImage)) {
+                [NSThread dch_runInMain:^{
+                    @strongify(self)
+                    self.highlightedImage = resizedImage;
+                    [self setNeedsLayout];
+                    if (completedBlock) {
+                        completedBlock(resizedImage, nil, SDImageCacheTypeMemory, url);
+                    }
+                }];
+            } else {
+                [NSThread dch_runInBackground:^{
+                    @strongify(self)
+                    do {
+                        if (![[self dch_highlightedImageURL] isEqual:url]) {
+                            [NSThread dch_runInMain:^{
+                                NSError *error = [NSError errorWithDomain:DCHImageTurboErrorDomain code:(-1001) userInfo:@{NSLocalizedDescriptionKey : @"![[self dch_imageURL] isEqual:url]"}];
+                                if (completedBlock) {
+                                    completedBlock(nil, error, SDImageCacheTypeNone, url);
+                                }
+                            }];
+                            break;
+                        }
+                        
+                        // Find from disk cache
+                        resizedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:resizedImageKey];
+                        if (!DCH_IsEmpty(resizedImage)) {
+                            [NSThread dch_runInMain:^{
+                                @strongify(self)
+                                self.highlightedImage = resizedImage;
+                                [self setNeedsLayout];
+                                if (completedBlock) {
+                                    completedBlock(resizedImage, nil, SDImageCacheTypeDisk, url);
+                                }
+                            }];
+                        } else {
+                            [self sd_cancelCurrentHighlightedImageLoad];
+                            
+                            id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                @strongify(self)
+                                do {
+                                    if (DCH_IsEmpty(image)) {
+                                        ;
+                                    } else {
+                                        [NSThread dch_runInBackground:^{
+                                            @strongify(self)
+                                            resizedImage = [DCHImageProcessor applyResize:image toSize:imageSize withContentMode:self.contentMode allowZoomOut:allowZoomOut];
+                                            if (resizedImage) {
+                                                BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
+                                                
+                                                if (resizedImage && finished) {
+                                                    [[SDImageCache sharedImageCache] storeImage:resizedImage recalculateFromImage:NO imageData:nil forKey:resizedImageKey toDisk:cacheOnDisk];
+                                                }
+                                                
+                                                [NSThread dch_runInMain:^{
+                                                    @strongify(self)
+                                                    self.highlightedImage = resizedImage;
+                                                    [self setNeedsLayout];
+                                                    if (completedBlock && finished) {
+                                                        completedBlock(resizedImage, error, cacheType, url);
+                                                    }
+                                                }];
+                                            }
+                                        }];
+                                    }
+                                } while (NO);
+                            }];
+                            [self sd_setImageLoadOperation:operation forKey:@"highlightedImage"];
+                        }
+                    } while (NO);
+                }];
+            }
         } else {
             [NSThread dch_runInMain:^{
-                NSError *error = [NSError errorWithDomain:@"SDWebImageErrorDomain" code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Trying to load a nil url"}];
+                NSError *error = [NSError errorWithDomain:@"SDWebImageErrorDomain" code:(-1) userInfo:@{NSLocalizedDescriptionKey : @"Trying to load a nil url"}];
                 if (completedBlock) {
                     completedBlock(nil, error, SDImageCacheTypeNone, url);
                 }
@@ -176,6 +246,7 @@ static char kDCHImageTurboHighlightedImageURLKey;
 }
 
 - (void)dch_cancelCurrentHighlightedImageLoad {
+    [self sd_cancelCurrentHighlightedImageLoad];
 }
 
 @end
