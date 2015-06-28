@@ -190,13 +190,13 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                 break;
                             }
                             fileLength = lseek(fileDescriptor, 0, SEEK_END);
-                            bytes = mmap(NULL, fileLength, (PROT_READ|PROT_WRITE), (MAP_FILE|MAP_SHARED), fileDescriptor, 0);
+                            bytes = mmap(NULL, (size_t)fileLength, (PROT_READ|PROT_WRITE), (MAP_FILE|MAP_SHARED), fileDescriptor, 0);
                             
                             if (operation.isCanceled) {
                                 break;
                             }
                             
-                            NSData *data = [NSData dataWithBytes:bytes length:fileLength];
+                            NSData *data = [NSData dataWithBytes:bytes length:(NSUInteger)fileLength];
                             UIImage *image = [UIImage imageWithData:data];
                             if (DCH_IsEmpty(image)) {
                                 [NSThread dch_runInMain:^{
@@ -262,7 +262,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                             }
                         } while (NO);
                         if (bytes != NULL) {
-                            munmap(bytes, fileLength);
+                            munmap(bytes, (size_t)fileLength);
                             bytes = NULL;
                         }
                         if (fileDescriptor >= 0) {
