@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		784E21B2A8431367C676975E /* libPods-DCHImageTurboDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79AB770C2E78CBA08F6721 /* libPods-DCHImageTurboDemo.a */; };
-		8D07FD281B3C244F000218F4 /* DCHImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D07FD271B3C244F000218F4 /* DCHImageProcessor.m */; };
 		8D200B501B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */; };
 		8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */; };
+		8D682B751B4012E300EAFD23 /* UIImage+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */; };
 		8DBAA72C1B3BE8E20024A0F3 /* libDCHImageTurbo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */; };
 		8DDD7A5E1B3D17BF007A0963 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDD7A5D1B3D17BF007A0963 /* main.m */; };
 		8DDD7A611B3D17BF007A0963 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDD7A601B3D17BF007A0963 /* AppDelegate.m */; };
@@ -19,7 +19,6 @@
 		8DDD7A691B3D17BF007A0963 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD7A681B3D17BF007A0963 /* Images.xcassets */; };
 		8DDD7A6C1B3D17BF007A0963 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD7A6A1B3D17BF007A0963 /* LaunchScreen.xib */; };
 		8DDD7A781B3D17BF007A0963 /* DCHImageTurboDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDD7A771B3D17BF007A0963 /* DCHImageTurboDemoTests.m */; };
-		8DDD7A811B3D1A37007A0963 /* DCHImageProcessor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D07FD261B3C244F000218F4 /* DCHImageProcessor.h */; };
 		8DDD7A821B3D1A3D007A0963 /* UIImageView+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B4E1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.h */; };
 		8DDD7A831B3D1A3D007A0963 /* DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B511B3C500B004DC94B /* DCHImageTurbo.h */; };
 		8DDD7A841B3D1A3D007A0963 /* DCHImageTurboCommonConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B521B3C5090004DC94B /* DCHImageTurboCommonConstants.h */; };
@@ -64,7 +63,6 @@
 				8DDD7A821B3D1A3D007A0963 /* UIImageView+DCHImageTurbo.h in CopyFiles */,
 				8DDD7A831B3D1A3D007A0963 /* DCHImageTurbo.h in CopyFiles */,
 				8DDD7A841B3D1A3D007A0963 /* DCHImageTurboCommonConstants.h in CopyFiles */,
-				8DDD7A811B3D1A37007A0963 /* DCHImageProcessor.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,13 +74,13 @@
 		48276C4CF3CA5BA4555F5499 /* Pods-DCHImageTurbo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCHImageTurbo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCHImageTurbo/Pods-DCHImageTurbo.release.xcconfig"; sourceTree = "<group>"; };
 		65E4F0CF38D63D1AB717758F /* Pods-DCHImageTurboDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCHImageTurboDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCHImageTurboDemo/Pods-DCHImageTurboDemo.release.xcconfig"; sourceTree = "<group>"; };
 		82D3730F1BFAF19FD8800E93 /* libPods-DCHImageTurbo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DCHImageTurbo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D07FD261B3C244F000218F4 /* DCHImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageProcessor.h; sourceTree = "<group>"; };
-		8D07FD271B3C244F000218F4 /* DCHImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHImageProcessor.m; sourceTree = "<group>"; };
 		8D200B4E1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DCHImageTurbo.h"; sourceTree = "<group>"; };
 		8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DCHImageTurbo.m"; sourceTree = "<group>"; };
 		8D200B511B3C500B004DC94B /* DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageTurbo.h; sourceTree = "<group>"; };
 		8D200B521B3C5090004DC94B /* DCHImageTurboCommonConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageTurboCommonConstants.h; sourceTree = "<group>"; };
 		8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHImageTurboCommonConstants.m; sourceTree = "<group>"; };
+		8D682B731B4012E300EAFD23 /* UIImage+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DCHImageTurbo.h"; sourceTree = "<group>"; };
+		8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DCHImageTurbo.m"; sourceTree = "<group>"; };
 		8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCHImageTurbo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBAA72B1B3BE8E20024A0F3 /* DCHImageTurboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DCHImageTurboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBAA7311B3BE8E20024A0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,17 +179,17 @@
 		8DBAA7221B3BE8E20024A0F3 /* DCHImageTurbo */ = {
 			isa = PBXGroup;
 			children = (
-				8D07FD261B3C244F000218F4 /* DCHImageProcessor.h */,
-				8D07FD271B3C244F000218F4 /* DCHImageProcessor.m */,
-				8D200B4E1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.h */,
-				8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */,
 				8D200B511B3C500B004DC94B /* DCHImageTurbo.h */,
 				8D200B521B3C5090004DC94B /* DCHImageTurboCommonConstants.h */,
 				8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */,
 				8DDD7A881B3D45AE007A0963 /* DCHLoadLocalImageOperation.h */,
 				8DDD7A891B3D45AE007A0963 /* DCHLoadLocalImageOperation.m */,
+				8D200B4E1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.h */,
+				8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */,
 				8DFA94141B3D7A0E0069F64B /* UIView+DCHImageTurbo.h */,
 				8DFA94151B3D7A0E0069F64B /* UIView+DCHImageTurbo.m */,
+				8D682B731B4012E300EAFD23 /* UIImage+DCHImageTurbo.h */,
+				8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */,
 			);
 			path = DCHImageTurbo;
 			sourceTree = "<group>";
@@ -484,7 +482,7 @@
 			files = (
 				8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */,
 				8DDD7A8A1B3D45AE007A0963 /* DCHLoadLocalImageOperation.m in Sources */,
-				8D07FD281B3C244F000218F4 /* DCHImageProcessor.m in Sources */,
+				8D682B751B4012E300EAFD23 /* UIImage+DCHImageTurbo.m in Sources */,
 				8D200B501B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m in Sources */,
 				8DFA94161B3D7A0E0069F64B /* UIView+DCHImageTurbo.m in Sources */,
 			);

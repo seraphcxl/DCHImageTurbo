@@ -8,7 +8,7 @@
 
 #import "UIView+DCHImageTurbo.h"
 #import <Tourbillon/DCHTourbillon.h>
-#import "DCHImageProcessor.h"
+#import "UIImage+DCHImageTurbo.h"
 #import "DCHImageTurboCommonConstants.h"
 
 @implementation UIView (DCHImageTurbo)

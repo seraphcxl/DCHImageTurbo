@@ -10,7 +10,7 @@
 #import <Tourbillon/DCHTourbillon.h>
 #import <SDWebImage/UIView+WebCacheOperation.h>
 #import <libextobjc/EXTScope.h>
-#import "DCHImageProcessor.h"
+#import "UIImage+DCHImageTurbo.h"
 #import "DCHImageTurboCommonConstants.h"
 #import <sys/mman.h>
 #import "DCHLoadLocalImageOperation.h"
@@ -91,7 +91,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                         }
                                     }];
                                 } else {  // use customized image
-                                    UIImage *customizedImage = [DCHImageProcessor customizeImage:image withParams:customizeParamsDic contentMode:self.contentMode];
+                                    UIImage *customizedImage = [UIImage customizeImage:image withParams:customizeParamsDic contentMode:self.contentMode];
                                     if (customizedImage) {
                                         BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
                                         
@@ -212,7 +212,23 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                 break;
                             }
                             
-                            [[SDImageCache sharedImageCache] storeImage:image recalculateFromImage:NO imageData:nil forKey:customizedImageKey toDisk:NO];
+                            if (operation.isCanceled) {
+                                break;
+                            }
+                            
+                            UIImage *decompressedImage = [UIImage decodedImageWithImage:image];
+                            
+                            if (DCH_IsEmpty(decompressedImage)) {
+                                [NSThread dch_runInMain:^{
+                                    NSError *error = [NSError errorWithDomain:DCHImageTurboErrorDomain code:(-1004) userInfo:@{NSLocalizedDescriptionKey : @"DCH_IsEmpty(decompressedImage)"}];
+                                    if (completedBlock) {
+                                        completedBlock(decompressedImage, error, path, nil, SDImageCacheTypeNone);
+                                    }
+                                }];
+                                break;
+                            }
+                            
+                            [[SDImageCache sharedImageCache] storeImage:decompressedImage recalculateFromImage:NO imageData:nil forKey:customizedImageKey toDisk:NO];
                             
                             if (operation.isCanceled) {
                                 break;
@@ -221,14 +237,14 @@ static char kDCHImageTurboHighlightedImagePathKey;
                             if (DCH_IsEmpty(customizeParamsDic)) {  // use origin image
                                 [NSThread dch_runInMain:^{
                                     if (uiActionBlock) {
-                                        uiActionBlock(image, error, path, nil);
+                                        uiActionBlock(decompressedImage, error, path, nil);
                                     }
                                     if (completedBlock) {
-                                        completedBlock(image, error, path, nil, SDImageCacheTypeDisk);
+                                        completedBlock(decompressedImage, error, path, nil, SDImageCacheTypeDisk);
                                     }
                                 }];
                             } else {  // use customized image
-                                UIImage *customizedImage = [DCHImageProcessor customizeImage:image withParams:customizeParamsDic contentMode:self.contentMode];
+                                UIImage *customizedImage = [UIImage customizeImage:decompressedImage withParams:customizeParamsDic contentMode:self.contentMode];
                                 if (customizedImage) {
                                     if (customizedImage) {
                                         [[SDImageCache sharedImageCache] storeImage:customizedImage recalculateFromImage:NO imageData:nil forKey:customizedImageKey toDisk:NO];
