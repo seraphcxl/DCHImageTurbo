@@ -1,2 +1,2 @@
 # DCHImageTurbo
-Image loader and cache.
+Asynchronous Image loader with cache support base on SDWebImage.
