@@ -136,6 +136,6 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency "Tourbillon", "~> 1.0.8"
   s.dependency "libextobjc", "~> 0.4.1"
-  s.dependency "libextobjc", "~> 3.7.2"
+  s.dependency "SDWebImage", "~> 3.7.2"
 
 end
