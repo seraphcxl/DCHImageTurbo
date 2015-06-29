@@ -10,7 +10,9 @@
 #define DCHImageTurbo_DCHImageTurbo_h
 
 #import "DCHImageTurboCommonConstants.h"
-#import "DCHImageProcessor.h"
+#import "UIView+DCHImageTurbo.h"
 #import "UIImageView+DCHImageTurbo.h"
+#import "UIImage+DCHImageTurbo.h"
+#import "DCHFileMappingImage.h"
 
 #endif
