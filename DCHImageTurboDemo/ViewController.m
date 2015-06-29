@@ -25,7 +25,7 @@
         int i = 0;
     }];
     
-    DCHFileMappingImage *img = [DCHFileMappingImage imageWithMappingContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"]  withType:DCHFileMappingImageType_JPG_JPEG];
+    DCHFileMappingImage *img = [DCHFileMappingImage imageWithMappingContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"]];
     NSLog(@"%@", img);
 }
 

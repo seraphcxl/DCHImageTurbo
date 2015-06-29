@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, DCHFileMappingImageType) {
+    DCHFileMappingImageType_None,
     DCHFileMappingImageType_PNG,
     DCHFileMappingImageType_JPG_JPEG,
 };
 
 @interface DCHFileMappingImage : UIImage
 
-+ (nullable DCHFileMappingImage *)imageWithMappingContentsOfFile:(nullable NSString *)path withType:(DCHFileMappingImageType)type;
++ (nullable DCHFileMappingImage *)imageWithMappingContentsOfFile:(nullable NSString *)path;
 
-- (nullable instancetype)initWithMappingContentsOfFile:(nullable NSString *)path withType:(DCHFileMappingImageType)type;
+- (nullable instancetype)initWithMappingContentsOfFile:(nullable NSString *)path;
 
 @end

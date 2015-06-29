@@ -184,13 +184,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                 break;
                             }
                             
-                            NSString *ext = [path pathExtension];
-                            DCHFileMappingImage *fileMappingImage = nil;
-                            if ([ext isEqualToString:@"jpg"] || [ext isEqualToString:@"jpeg"]) {
-                                fileMappingImage = [DCHFileMappingImage imageWithMappingContentsOfFile:path withType:DCHFileMappingImageType_JPG_JPEG];
-                            } else if ([ext isEqualToString:@"png"]) {
-                                fileMappingImage = [DCHFileMappingImage imageWithMappingContentsOfFile:path withType:DCHFileMappingImageType_PNG];
-                            }
+                            DCHFileMappingImage *fileMappingImage = [DCHFileMappingImage imageWithMappingContentsOfFile:path];
                             
                             if (DCH_IsEmpty(fileMappingImage)) {
                                 [NSThread dch_runInMain:^{

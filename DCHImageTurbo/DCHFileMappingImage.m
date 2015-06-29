@@ -26,8 +26,8 @@ static void DCHFileMappingImageReleaseImageData(void *info, const void *data, si
     }
 }
 
-+ (nullable DCHFileMappingImage *)imageWithMappingContentsOfFile:(nullable NSString *)path withType:(DCHFileMappingImageType)type {
-    return [[DCHFileMappingImage alloc] initWithMappingContentsOfFile:path withType:type];
++ (nullable DCHFileMappingImage *)imageWithMappingContentsOfFile:(nullable NSString *)path {
+    return [[DCHFileMappingImage alloc] initWithMappingContentsOfFile:path];
 }
 
 - (void)dealloc {
@@ -42,10 +42,20 @@ static void DCHFileMappingImageReleaseImageData(void *info, const void *data, si
     }
 }
 
-- (nullable instancetype)initWithMappingContentsOfFile:(nullable NSString *)path withType:(DCHFileMappingImageType)type {
+- (nullable instancetype)initWithMappingContentsOfFile:(nullable NSString *)path {
     if (DCH_IsEmpty(path)) {
         return nil;
     }
+    DCHFileMappingImageType type = DCHFileMappingImageType_None;
+    NSString *ext = [path pathExtension];
+    if ([ext isEqualToString:@"jpg"] || [ext isEqualToString:@"jpeg"]) {
+        type = DCHFileMappingImageType_JPG_JPEG;
+    } else if ([ext isEqualToString:@"png"]) {
+        type = DCHFileMappingImageType_PNG;
+    } else {
+        return nil;
+    }
+    
     self.fileDescriptor = -1;
     self.fileLength = 0;
     CGDataProviderRef dataProvider = NULL;
