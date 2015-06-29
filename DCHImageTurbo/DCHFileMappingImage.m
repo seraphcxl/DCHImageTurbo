@@ -62,7 +62,7 @@ static void DCHFileMappingImageReleaseImageData(void *info, const void *data, si
         switch (type) {
             case DCHFileMappingImageType_PNG:
             {
-                imageRef = CGImageCreateWithPNGDataProvider(dataProvider, NULL, YES, kCGRendzeringIntentDefault);
+                imageRef = CGImageCreateWithPNGDataProvider(dataProvider, NULL, YES, kCGRenderingIntentDefault);
             }
                 break;
             case DCHFileMappingImageType_JPG_JPEG:
