@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "UIImageView+DCHImageTurbo.h"
+#import "DCHFileMappingImage.h"
 
 @interface ViewController ()
 
@@ -20,14 +21,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     UIImageView *imgView = [[UIImageView alloc] init];
-    [imgView dch_setImageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"png"] placeholderImage:nil size:CGSizeMake(200, 200) completed:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL, SDImageCacheType cacheType) {
+    [imgView dch_setImageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"] placeholderImage:nil size:CGSizeMake(200, 200) completed:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL, SDImageCacheType cacheType) {
         int i = 0;
     }];
-//    [imgView dch_setImageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"png"] placeholderImage:nil size:CGSizeZero allowZoomOut:NO completed:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
-//        do {
-//            ;
-//        } while (NO);
-//    }];
+    
+    DCHFileMappingImage *img = [DCHFileMappingImage imageWithMappingContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"]  withType:DCHFileMappingImageType_JPG_JPEG];
+    NSLog(@"%@", img);
 }
 
 - (void)didReceiveMemoryWarning {
