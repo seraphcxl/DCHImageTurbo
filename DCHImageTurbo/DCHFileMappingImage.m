@@ -68,11 +68,11 @@ static void DCHFileMappingImageReleaseImageData(void *info, const void *data, si
         self.fileLength = lseek(self.fileDescriptor, 0, SEEK_END);
         self.bytes = mmap(NULL, (size_t)self.fileLength, (PROT_READ|PROT_WRITE), (MAP_FILE|MAP_SHARED), self.fileDescriptor, 0);
         
-        dataProvider = CGDataProviderCreateWithData(NULL, self.bytes, self.fileLength, DCHFileMappingImageReleaseImageData);
+        dataProvider = CGDataProviderCreateWithData(NULL, self.bytes, (size_t)self.fileLength, DCHFileMappingImageReleaseImageData);
         switch (type) {
             case DCHFileMappingImageType_PNG:
             {
-                imageRef = CGImageCreateWithPNGDataProvider(dataProvider, NULL, YES, kCGRenderingIntentDefault);
+                imageRef = CGImageCreateWithPNGDataProvider(dataProvider, NULL, YES, kCGRendzeringIntentDefault);
             }
                 break;
             case DCHFileMappingImageType_JPG_JPEG:
