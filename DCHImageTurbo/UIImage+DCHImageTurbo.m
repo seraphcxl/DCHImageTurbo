@@ -18,7 +18,7 @@ NSString * const DCHImageTurboKey_BorderWidth = @"DCHImageTurboKey_BorderWidth";
 
 @implementation UIImage (DCHImageTurbo)
 
-+ (UIImage *)customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode {
++ (UIImage *)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode {
     UIImage *result = nil;
     do {
         if (DCH_IsEmpty(image) || DCH_IsEmpty(paramsDic)) {
@@ -30,14 +30,14 @@ NSString * const DCHImageTurboKey_BorderWidth = @"DCHImageTurboKey_BorderWidth";
         if (!DCH_IsEmpty(resizeWidth) && !DCH_IsEmpty(resizeHeight) && !DCH_IsEmpty(resizeScale)) {
             CGSize size = CGSizeMake(resizeWidth.floatValue, resizeHeight.floatValue);
             if (!CGSizeEqualToSize(size, CGSizeZero)) {
-                result = [UIImage applyResize:image toSize:size withContentMode:contentMode allowZoomOut:YES];
+                result = [UIImage dch_applyResize:image toSize:size withContentMode:contentMode allowZoomOut:YES];
             }
         }
     } while (NO);
     return result;
 }
 
-+ (UIImage *)decodedImageWithImage:(UIImage *)image {
++ (UIImage *)dch_decodedImageWithImage:(UIImage *)image {
     UIImage *result = nil;
     CGColorSpaceRef colorSpace = NULL;
     CGContextRef context = NULL;
@@ -105,7 +105,7 @@ NSString * const DCHImageTurboKey_BorderWidth = @"DCHImageTurboKey_BorderWidth";
     return result;
 }
 
-+ (UIImage *)applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius {
++ (UIImage *)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius {
     UIImage *result = nil;
     do {
         if (!image) {
@@ -122,7 +122,7 @@ NSString * const DCHImageTurboKey_BorderWidth = @"DCHImageTurboKey_BorderWidth";
     return result;
 }
 
-+ (UIImage *)applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut {
++ (UIImage *)dch_applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut {
     UIImage *result = nil;
     CGContextRef bitmapContext = nil;
     CGImageRef scaledImageRef = nil;

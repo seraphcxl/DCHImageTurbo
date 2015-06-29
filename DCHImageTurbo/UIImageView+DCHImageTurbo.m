@@ -26,7 +26,6 @@ static char kDCHImageTurboHighlightedImagePathKey;
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customizeBlock options:(SDWebImageOptions)options uiAction:(DCHImageTurboUIActionBlock)uiActionBlock progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock {
     do {
         [self sd_cancelCurrentImageLoad];
-        objc_setAssociatedObject(self, &kDCHImageTurboImageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         if (!(options & SDWebImageDelayPlaceholder) && placeholder) {
             [NSThread dch_runInMain:^{
@@ -92,7 +91,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                         }
                                     }];
                                 } else {  // use customized image
-                                    UIImage *customizedImage = [UIImage customizeImage:image withParams:customizeParamsDic contentMode:self.contentMode];
+                                    UIImage *customizedImage = [UIImage dch_customizeImage:image withParams:customizeParamsDic contentMode:self.contentMode];
                                     if (customizedImage) {
                                         BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
                                         
@@ -130,7 +129,6 @@ static char kDCHImageTurboHighlightedImagePathKey;
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customizeBlock uiAction:(DCHImageTurboUIActionBlock)uiActionBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock {
     do {
         [self sd_cancelCurrentImageLoad];
-        objc_setAssociatedObject(self, &kDCHImageTurboImagePathKey, path, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         if (placeholder) {
             [NSThread dch_runInMain:^{
@@ -212,7 +210,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                 break;
                             }
                             
-                            UIImage *decompressedImage = [UIImage decodedImageWithImage:fileMappingImage];
+                            UIImage *decompressedImage = [UIImage dch_decodedImageWithImage:fileMappingImage];
                             
                             if (DCH_IsEmpty(decompressedImage)) {
                                 [NSThread dch_runInMain:^{
@@ -240,7 +238,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                     }
                                 }];
                             } else {  // use customized image
-                                UIImage *customizedImage = [UIImage customizeImage:decompressedImage withParams:customizeParamsDic contentMode:self.contentMode];
+                                UIImage *customizedImage = [UIImage dch_customizeImage:decompressedImage withParams:customizeParamsDic contentMode:self.contentMode];
                                 if (customizedImage) {
                                     if (customizedImage) {
                                         [[SDImageCache sharedImageCache] storeImage:customizedImage recalculateFromImage:NO imageData:nil forKey:customizedImageKey toDisk:NO];
@@ -298,6 +296,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
 
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder size:(CGSize)imageSize options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock {
     @weakify(self)
+    objc_setAssociatedObject(self, &kDCHImageTurboImageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self dch_setImageWithURL:url placeholderImage:placeholder customize:^NSDictionary *{
         return @{DCHImageTurboKey_ResizeWidth: @(imageSize.width), DCHImageTurboKey_ResizeHeight: @(imageSize.height), DCHImageTurboKey_ResizeScale: @([UIScreen mainScreen].scale)};
     } options:options uiAction:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
@@ -313,6 +312,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
 
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder size:(CGSize)imageSize completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock {
     @weakify(self)
+    objc_setAssociatedObject(self, &kDCHImageTurboImagePathKey, path, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self dch_setImageWithContentsOfFile:path placeholderImage:placeholder customize:^NSDictionary *{
         return @{DCHImageTurboKey_ResizeWidth: @(imageSize.width), DCHImageTurboKey_ResizeHeight: @(imageSize.height), DCHImageTurboKey_ResizeScale: @([UIScreen mainScreen].scale)};
     } uiAction:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
@@ -337,6 +337,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
 
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url size:(CGSize)imageSize options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock {
     @weakify(self)
+    objc_setAssociatedObject(self, &kDCHImageTurboHighlightedImageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self dch_setImageWithURL:url placeholderImage:nil customize:^NSDictionary *{
         return @{DCHImageTurboKey_ResizeWidth: @(imageSize.width), DCHImageTurboKey_ResizeHeight: @(imageSize.height), DCHImageTurboKey_ResizeScale: @([UIScreen mainScreen].scale)};
     } options:options uiAction:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
@@ -352,6 +353,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
 
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder size:(CGSize)imageSize completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock {
     @weakify(self)
+    objc_setAssociatedObject(self, &kDCHImageTurboHighlightedImagePathKey, path, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self dch_setImageWithContentsOfFile:path placeholderImage:placeholder customize:^NSDictionary *{
         return @{DCHImageTurboKey_ResizeWidth: @(imageSize.width), DCHImageTurboKey_ResizeHeight: @(imageSize.height), DCHImageTurboKey_ResizeScale: @([UIScreen mainScreen].scale)};
     } uiAction:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {

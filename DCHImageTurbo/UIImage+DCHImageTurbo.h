@@ -18,16 +18,16 @@ extern NSString * const DCHImageTurboKey_BorderWidth;  // NSNumber
 @interface UIImage (DCHImageTurbo)
 
 #pragma mark - customize
-+ (UIImage *)customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
++ (UIImage *)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
 
 #pragma mark - Decode
-+ (UIImage *)decodedImageWithImage:(UIImage *)image;
++ (UIImage *)dch_decodedImageWithImage:(UIImage *)image;
 
 #pragma mark - GaussianBlur
-+ (UIImage *)applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius;
++ (UIImage *)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius;
 
 #pragma mark - Resize
-+ (UIImage *)applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut;
++ (UIImage *)dch_applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut;
 
 
 @end
