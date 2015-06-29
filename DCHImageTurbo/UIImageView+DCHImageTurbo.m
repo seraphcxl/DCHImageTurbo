@@ -14,6 +14,7 @@
 #import "DCHImageTurboCommonConstants.h"
 #import <sys/mman.h>
 #import "DCHLoadLocalImageOperation.h"
+#import "DCHFileMappingImage.h"
 
 static char kDCHImageTurboImageURLKey;
 static char kDCHImageTurboImagePathKey;
@@ -185,20 +186,15 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                 break;
                             }
                             
-                            fileDescriptor = open([path fileSystemRepresentation], (O_RDWR | O_CREAT), 0666);
-                            if (fileDescriptor < 0) {
-                                break;
-                            }
-                            fileLength = lseek(fileDescriptor, 0, SEEK_END);
-                            bytes = mmap(NULL, fileLength, (PROT_READ|PROT_WRITE), (MAP_FILE|MAP_SHARED), fileDescriptor, 0);
-                            
-                            if (operation.isCanceled) {
-                                break;
+                            NSString *ext = [path pathExtension];
+                            DCHFileMappingImage *fileMappingImage = nil;
+                            if ([ext isEqualToString:@"jpg"] || [ext isEqualToString:@"jpeg"]) {
+                                fileMappingImage = [DCHFileMappingImage imageWithMappingContentsOfFile:path withType:DCHFileMappingImageType_JPG_JPEG];
+                            } else if ([ext isEqualToString:@"png"]) {
+                                fileMappingImage = [DCHFileMappingImage imageWithMappingContentsOfFile:path withType:DCHFileMappingImageType_PNG];
                             }
                             
-                            NSData *data = [NSData dataWithBytes:bytes length:fileLength];
-                            UIImage *image = [UIImage imageWithData:data];
-                            if (DCH_IsEmpty(image)) {
+                            if (DCH_IsEmpty(fileMappingImage)) {
                                 [NSThread dch_runInMain:^{
                                     if (placeholder) {
                                         if (uiActionBlock) {
@@ -206,7 +202,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                         }
                                     }
                                     if (completedBlock) {
-                                        completedBlock(image, error, path, nil, SDImageCacheTypeNone);
+                                        completedBlock(fileMappingImage, error, path, nil, SDImageCacheTypeNone);
                                     }
                                 }];
                                 break;
@@ -216,7 +212,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                                 break;
                             }
                             
-                            UIImage *decompressedImage = [UIImage decodedImageWithImage:image];
+                            UIImage *decompressedImage = [UIImage decodedImageWithImage:fileMappingImage];
                             
                             if (DCH_IsEmpty(decompressedImage)) {
                                 [NSThread dch_runInMain:^{
@@ -262,7 +258,7 @@ static char kDCHImageTurboHighlightedImagePathKey;
                             }
                         } while (NO);
                         if (bytes != NULL) {
-                            munmap(bytes, fileLength);
+                            munmap(bytes, (size_t)fileLength);
                             bytes = NULL;
                         }
                         if (fileDescriptor >= 0) {

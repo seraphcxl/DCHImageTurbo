@@ -11,6 +11,8 @@
 		8D200B501B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */; };
 		8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */; };
 		8D682B751B4012E300EAFD23 /* UIImage+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */; };
+		8DADCC221B40CDEE00A2CEA5 /* 梵高_向日葵.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8DADCC211B40CDEE00A2CEA5 /* 梵高_向日葵.jpg */; };
+		8DADCC251B40D58F00A2CEA5 /* DCHFileMappingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DADCC241B40D58F00A2CEA5 /* DCHFileMappingImage.m */; };
 		8DBAA72C1B3BE8E20024A0F3 /* libDCHImageTurbo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */; };
 		8DDD7A5E1B3D17BF007A0963 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDD7A5D1B3D17BF007A0963 /* main.m */; };
 		8DDD7A611B3D17BF007A0963 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDD7A601B3D17BF007A0963 /* AppDelegate.m */; };
@@ -23,7 +25,6 @@
 		8DDD7A831B3D1A3D007A0963 /* DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B511B3C500B004DC94B /* DCHImageTurbo.h */; };
 		8DDD7A841B3D1A3D007A0963 /* DCHImageTurboCommonConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B521B3C5090004DC94B /* DCHImageTurboCommonConstants.h */; };
 		8DDD7A851B3D1F34007A0963 /* libDCHImageTurbo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */; };
-		8DDD7A871B3D2070007A0963 /* 梵高_向日葵.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD7A861B3D2070007A0963 /* 梵高_向日葵.png */; };
 		8DDD7A8A1B3D45AE007A0963 /* DCHLoadLocalImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDD7A891B3D45AE007A0963 /* DCHLoadLocalImageOperation.m */; };
 		8DFA94161B3D7A0E0069F64B /* UIView+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFA94151B3D7A0E0069F64B /* UIView+DCHImageTurbo.m */; };
 		F5F46632F69C60D837CCDEC9 /* libPods-DCHImageTurbo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D3730F1BFAF19FD8800E93 /* libPods-DCHImageTurbo.a */; };
@@ -81,6 +82,9 @@
 		8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHImageTurboCommonConstants.m; sourceTree = "<group>"; };
 		8D682B731B4012E300EAFD23 /* UIImage+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DCHImageTurbo.h"; sourceTree = "<group>"; };
 		8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DCHImageTurbo.m"; sourceTree = "<group>"; };
+		8DADCC211B40CDEE00A2CEA5 /* 梵高_向日葵.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "梵高_向日葵.jpg"; sourceTree = "<group>"; };
+		8DADCC231B40D58F00A2CEA5 /* DCHFileMappingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHFileMappingImage.h; sourceTree = "<group>"; };
+		8DADCC241B40D58F00A2CEA5 /* DCHFileMappingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHFileMappingImage.m; sourceTree = "<group>"; };
 		8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCHImageTurbo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBAA72B1B3BE8E20024A0F3 /* DCHImageTurboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DCHImageTurboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBAA7311B3BE8E20024A0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,7 +101,6 @@
 		8DDD7A711B3D17BF007A0963 /* DCHImageTurboDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DCHImageTurboDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDD7A761B3D17BF007A0963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DDD7A771B3D17BF007A0963 /* DCHImageTurboDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCHImageTurboDemoTests.m; sourceTree = "<group>"; };
-		8DDD7A861B3D2070007A0963 /* 梵高_向日葵.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "梵高_向日葵.png"; sourceTree = "<group>"; };
 		8DDD7A881B3D45AE007A0963 /* DCHLoadLocalImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHLoadLocalImageOperation.h; sourceTree = "<group>"; };
 		8DDD7A891B3D45AE007A0963 /* DCHLoadLocalImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHLoadLocalImageOperation.m; sourceTree = "<group>"; };
 		8DFA94141B3D7A0E0069F64B /* UIView+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DCHImageTurbo.h"; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				8DFA94151B3D7A0E0069F64B /* UIView+DCHImageTurbo.m */,
 				8D682B731B4012E300EAFD23 /* UIImage+DCHImageTurbo.h */,
 				8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */,
+				8DADCC231B40D58F00A2CEA5 /* DCHFileMappingImage.h */,
+				8DADCC241B40D58F00A2CEA5 /* DCHFileMappingImage.m */,
 			);
 			path = DCHImageTurbo;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 		8DDD7A5A1B3D17BF007A0963 /* DCHImageTurboDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8DADCC211B40CDEE00A2CEA5 /* 梵高_向日葵.jpg */,
 				8DDD7A5F1B3D17BF007A0963 /* AppDelegate.h */,
 				8DDD7A601B3D17BF007A0963 /* AppDelegate.m */,
 				8DDD7A621B3D17BF007A0963 /* ViewController.h */,
@@ -220,7 +226,6 @@
 				8DDD7A651B3D17BF007A0963 /* Main.storyboard */,
 				8DDD7A681B3D17BF007A0963 /* Images.xcassets */,
 				8DDD7A6A1B3D17BF007A0963 /* LaunchScreen.xib */,
-				8DDD7A861B3D2070007A0963 /* 梵高_向日葵.png */,
 				8DDD7A5B1B3D17BF007A0963 /* Supporting Files */,
 			);
 			path = DCHImageTurboDemo;
@@ -345,7 +350,7 @@
 		8DBAA7181B3BE8E20024A0F3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = CHEN;
 				TargetAttributes = {
 					8DBAA71F1B3BE8E20024A0F3 = {
@@ -396,7 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DDD7A871B3D2070007A0963 /* 梵高_向日葵.png in Resources */,
+				8DADCC221B40CDEE00A2CEA5 /* 梵高_向日葵.jpg in Resources */,
 				8DDD7A671B3D17BF007A0963 /* Main.storyboard in Resources */,
 				8DDD7A6C1B3D17BF007A0963 /* LaunchScreen.xib in Resources */,
 				8DDD7A691B3D17BF007A0963 /* Images.xcassets in Resources */,
@@ -482,6 +487,7 @@
 			files = (
 				8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */,
 				8DDD7A8A1B3D45AE007A0963 /* DCHLoadLocalImageOperation.m in Sources */,
+				8DADCC251B40D58F00A2CEA5 /* DCHFileMappingImage.m in Sources */,
 				8D682B751B4012E300EAFD23 /* UIImage+DCHImageTurbo.m in Sources */,
 				8D200B501B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m in Sources */,
 				8DFA94161B3D7A0E0069F64B /* UIView+DCHImageTurbo.m in Sources */,
@@ -573,6 +579,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -667,6 +674,7 @@
 				);
 				INFOPLIST_FILE = DCHImageTurboTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud.seraphcxl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -681,6 +689,7 @@
 				);
 				INFOPLIST_FILE = DCHImageTurboTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud.seraphcxl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -698,6 +707,7 @@
 				);
 				INFOPLIST_FILE = DCHImageTurboDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud.seraphcxl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "include/$(PROJECT_NAME)";
 			};
@@ -712,6 +722,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DCHImageTurboDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud.seraphcxl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "include/$(PROJECT_NAME)";
 			};
@@ -731,6 +742,7 @@
 				);
 				INFOPLIST_FILE = DCHImageTurboDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud.seraphcxl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DCHImageTurboDemo.app/DCHImageTurboDemo";
 			};
@@ -746,6 +758,7 @@
 				);
 				INFOPLIST_FILE = DCHImageTurboDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud.seraphcxl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DCHImageTurboDemo.app/DCHImageTurboDemo";
 			};
