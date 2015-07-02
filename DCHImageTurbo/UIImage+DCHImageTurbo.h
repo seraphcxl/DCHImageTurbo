@@ -26,8 +26,6 @@ extern NSString * const DCHImageTurboKey_BorderWidth;  // NSNumber
 #pragma mark - GaussianBlur
 + (UIImage *)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius;
 
-#pragma mark - Resize
-+ (UIImage *)dch_applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut;
-
++ (NSString *)layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode;
 
 @end
