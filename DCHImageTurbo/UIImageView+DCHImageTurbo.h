@@ -34,14 +34,13 @@
  *
  * @param url            The url for the image.
  * @param placeholder    The image to be set initially, until the image request finishes.
- * @param imageSize      size of image you wanted.
  * @param completedBlock A block called when operation has been completed. This block has no return value
  *                       and takes the requested UIImage as first parameter. In case of error the image parameter
  *                       is nil and the second parameter may contain an NSError. The third parameter is a Boolean
  *                       indicating if the image was retrived from the local cache or from the network.
  *                       The fourth parameter is the original image url.
  */
-- (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder size:(CGSize)imageSize completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+- (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
 
 /**
  * Set the imageView `image` with an `url`, placeholder and custom options.
@@ -50,8 +49,25 @@
  *
  * @param url            The url for the image.
  * @param placeholder    The image to be set initially, until the image request finishes.
- * @param imageSize      size of image you wanted.
- * @param allowZoomOut   allow to zoom out image to imageSize.
+ * @param cornerRadius   cornerRadius of image you wanted.
+ * @param borderWidth    borderWidth of image you wanted.
+ * @param borderColor    borderColor of image you wanted.
+ * @param completedBlock A block called when operation has been completed. This block has no return value
+ *                       and takes the requested UIImage as first parameter. In case of error the image parameter
+ *                       is nil and the second parameter may contain an NSError. The third parameter is a Boolean
+ *                       indicating if the image was retrived from the local cache or from the network.
+ *                       The fourth parameter is the original image url.
+ */
+- (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder cornerRadius:(CGFloat)cornerRadius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+
+/**
+ * Set the imageView `image` with an `url`, placeholder and custom options.
+ *
+ * The download is asynchronous and cached.
+ *
+ * @param url            The url for the image.
+ * @param placeholder    The image to be set initially, until the image request finishes.
+ * @param customizeBlock customizeBlock
  * @param options        The options to use when downloading the image. @see SDWebImageOptions for the possible values.
  * @param progressBlock  A block called while image is downloading
  * @param completedBlock A block called when operation has been completed. This block has no return value
@@ -60,7 +76,8 @@
  *                       indicating if the image was retrived from the local cache or from the network.
  *                       The fourth parameter is the original image url.
  */
-- (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder size:(CGSize)imageSize options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+- (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customizeBlock options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+
 
 /**
  * Get the current image path.
@@ -72,14 +89,17 @@
  *
  * @param path           The path for the image.
  * @param placeholder    The image to be set initially, until the image request finishes.
- * @param imageSize      size of image you wanted.
  * @param allowZoomOut   allow to zoom out image to imageSize.
  * @param completedBlock A block called when operation has been completed. This block has no return value
  *                       and takes the requested UIImage as first parameter. In case of error the image parameter
  *                       is nil and the second parameter may contain an NSError. The third parameter is the original image path.
  *                       The fourth parameter is the original image url.
  */
-- (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder size:(CGSize)imageSize completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+- (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+
+- (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder cornerRadius:(CGFloat)cornerRadius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+
+- (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customizeBlock options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
 
 #pragma mark - HighlightedImage
 /**
@@ -93,28 +113,13 @@
 - (NSURL *)dch_highlightedImageURL;
 
 /**
- * Set the imageView `highlightedimage` with an `url`, placeholder and custom options.
+ * Set the imageView `highlighted image` with an `url`, placeholder and custom options.
  *
  * The download is asynchronous and cached.
  *
  * @param url            The url for the image.
- * @param imageSize      size of image you wanted.
- * @param completedBlock A block called when operation has been completed. This block has no return value
- *                       and takes the requested UIImage as first parameter. In case of error the image parameter
- *                       is nil and the second parameter may contain an NSError. The third parameter is a Boolean
- *                       indicating if the image was retrived from the local cache or from the network.
- *                       The fourth parameter is the original image url.
- */
-- (void)dch_setHighlightedImageWithURL:(NSURL *)url size:(CGSize)imageSize completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
-
-/**
- * Set the imageView `highlightedimage` with an `url`, placeholder and custom options.
- *
- * The download is asynchronous and cached.
- *
- * @param url            The url for the image.
- * @param imageSize      size of image you wanted.
- * @param allowZoomOut   allow to zoom out image to imageSize.
+ * @param placeholder    The image to be set initially, until the image request finishes.
+ * @param customizeBlock customizeBlock
  * @param options        The options to use when downloading the image. @see SDWebImageOptions for the possible values.
  * @param progressBlock  A block called while image is downloading
  * @param completedBlock A block called when operation has been completed. This block has no return value
@@ -123,7 +128,7 @@
  *                       indicating if the image was retrived from the local cache or from the network.
  *                       The fourth parameter is the original image url.
  */
-- (void)dch_setHighlightedImageWithURL:(NSURL *)url size:(CGSize)imageSize options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+- (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customizeBlock options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
 
 /**
  * Get the current highlighted image path.
@@ -142,6 +147,6 @@
  *                       is nil and the second parameter may contain an NSError. The third parameter is the original image path.
  *                       The fourth parameter is the original image url.
  */
-- (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder size:(CGSize)imageSize completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
+- (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customizeBlock options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(DCHImageTurboLoadImageCompletionBlock)completedBlock;
 
 @end

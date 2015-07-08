@@ -22,8 +22,8 @@
     
     UIImageView *imgView = [[UIImageView alloc] init];
     imgView.contentMode = UIViewContentModeScaleAspectFit;
-    [imgView dch_setImageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"] placeholderImage:nil size:CGSizeMake(100, 200) completed:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL, SDImageCacheType cacheType) {
-        int i = 0;
+    [imgView dch_setImageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"] placeholderImage:nil completed:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL, SDImageCacheType cacheType) {
+        NSLog(@"%@", image);
     }];
     
     DCHFileMappingImage *img = [DCHFileMappingImage imageWithMappingContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"]];
