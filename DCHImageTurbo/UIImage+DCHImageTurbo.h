@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const DCHImageTurboKey_ResizeWidth;  // NSNumber
-extern NSString * const DCHImageTurboKey_ResizeHeight;  // NSNumber
-extern NSString * const DCHImageTurboKey_ResizeScale;  // NSNumber
-extern NSString * const DCHImageTurboKey_CornerRadius;  // NSNumber
-extern NSString * const DCHImageTurboKey_BorderColor;  // UIColor
-extern NSString * const DCHImageTurboKey_BorderWidth;  // NSNumber
+extern NSString * const key_DCHImageTurbo_UIImage_ResizeWidth;  // NSNumber
+extern NSString * const key_DCHImageTurbo_UIImage_ResizeHeight;  // NSNumber
+extern NSString * const key_DCHImageTurbo_UIImage_ResizeScale;  // NSNumber
+extern NSString * const key_DCHImageTurbo_UIImage_CornerRadius;  // NSNumber
+extern NSString * const key_DCHImageTurbo_UIImage_BorderColor;  // UIColor
+extern NSString * const key_DCHImageTurbo_UIImage_BorderWidth;  // NSNumber
 
 @interface UIImage (DCHImageTurbo)
 

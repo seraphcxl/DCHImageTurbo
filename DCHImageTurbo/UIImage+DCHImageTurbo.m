@@ -9,12 +9,12 @@
 #import "UIImage+DCHImageTurbo.h"
 #import <Tourbillon/DCHTourbillon.h>
 
-NSString * const DCHImageTurboKey_ResizeWidth = @"DCHImageTurboKey_ResizeWidth";  // NSNumber
-NSString * const DCHImageTurboKey_ResizeHeight = @"DCHImageTurboKey_ResizeHeight";  // NSNumber
-NSString * const DCHImageTurboKey_ResizeScale = @"DCHImageTurboKey_ResizeScale";  // NSNumber
-NSString * const DCHImageTurboKey_CornerRadius = @"DCHImageTurboKey_CornerRadius";  // NSNumber
-NSString * const DCHImageTurboKey_BorderColor = @"DCHImageTurboKey_BorderColor";  // UIColor
-NSString * const DCHImageTurboKey_BorderWidth = @"DCHImageTurboKey_BorderWidth";  // NSNumber
+NSString * const key_DCHImageTurbo_UIImage_ResizeWidth = @"key_DCHImageTurbo_UIImage_ResizeWidth";  // NSNumber
+NSString * const key_DCHImageTurbo_UIImage_ResizeHeight = @"key_DCHImageTurbo_UIImage_ResizeHeight";  // NSNumber
+NSString * const key_DCHImageTurbo_UIImage_ResizeScale = @"key_DCHImageTurbo_UIImage_ResizeScale";  // NSNumber
+NSString * const key_DCHImageTurbo_UIImage_CornerRadius = @"key_DCHImageTurbo_UIImage_CornerRadius";  // NSNumber
+NSString * const key_DCHImageTurbo_UIImage_BorderColor = @"key_DCHImageTurbo_UIImage_BorderColor";  // UIColor
+NSString * const key_DCHImageTurbo_UIImage_BorderWidth = @"key_DCHImageTurbo_UIImage_BorderWidth";  // NSNumber
 
 @implementation UIImage (DCHImageTurbo)
 
@@ -24,12 +24,12 @@ NSString * const DCHImageTurboKey_BorderWidth = @"DCHImageTurboKey_BorderWidth";
         if (DCH_IsEmpty(image) || DCH_IsEmpty(paramsDic)) {
             break;
         }
-        NSNumber *resizeWidth = [paramsDic objectForKey:DCHImageTurboKey_ResizeWidth];
-        NSNumber *resizeHeight = [paramsDic objectForKey:DCHImageTurboKey_ResizeHeight];
-        NSNumber *resizeScale = [paramsDic objectForKey:DCHImageTurboKey_ResizeScale];
-        NSNumber *cornerRadius = [paramsDic objectForKey:DCHImageTurboKey_CornerRadius];
-        NSNumber *borderWidth = [paramsDic objectForKey:DCHImageTurboKey_BorderWidth];
-        UIColor *borderColor = [paramsDic objectForKey:DCHImageTurboKey_BorderColor];
+        NSNumber *resizeWidth = [paramsDic objectForKey:key_DCHImageTurbo_UIImage_ResizeWidth];
+        NSNumber *resizeHeight = [paramsDic objectForKey:key_DCHImageTurbo_UIImage_ResizeHeight];
+        NSNumber *resizeScale = [paramsDic objectForKey:key_DCHImageTurbo_UIImage_ResizeScale];
+        NSNumber *cornerRadius = [paramsDic objectForKey:key_DCHImageTurbo_UIImage_CornerRadius];
+        NSNumber *borderWidth = [paramsDic objectForKey:key_DCHImageTurbo_UIImage_BorderWidth];
+        UIColor *borderColor = [paramsDic objectForKey:key_DCHImageTurbo_UIImage_BorderColor];
         
         CGSize targetSize = image.size;
         CGFloat scale = image.scale;

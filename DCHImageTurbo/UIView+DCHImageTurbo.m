@@ -19,29 +19,29 @@
         if (DCH_IsEmpty(dic)) {
             break;
         }
-        NSNumber *resizeWidth = [dic objectForKey:DCHImageTurboKey_ResizeWidth];
+        NSNumber *resizeWidth = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeWidth];
         if (resizeWidth) {
             [result appendFormat:@"ResizeWidth%f", [resizeWidth floatValue]];
         }
-        NSNumber *resizeHeight = [dic objectForKey:DCHImageTurboKey_ResizeHeight];
+        NSNumber *resizeHeight = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeHeight];
         if (resizeHeight) {
             [result appendFormat:@"ResizeHeight%f", [resizeHeight floatValue]];
         }
-        NSNumber *resizeScale = [dic objectForKey:DCHImageTurboKey_ResizeScale];
+        NSNumber *resizeScale = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeScale];
         if (resizeScale) {
             [result appendFormat:@"ResizeScale%f", [resizeScale floatValue]];
         }
-        NSNumber *cornerRadius = [dic objectForKey:DCHImageTurboKey_CornerRadius];
+        NSNumber *cornerRadius = [dic objectForKey:key_DCHImageTurbo_UIImage_CornerRadius];
         if (cornerRadius) {
             [result appendFormat:@"CornerRadius%f", [cornerRadius floatValue]];
         }
-        UIColor *borderColor = [dic objectForKey:DCHImageTurboKey_BorderColor];
+        UIColor *borderColor = [dic objectForKey:key_DCHImageTurbo_UIImage_BorderColor];
         if (borderColor) {
             CGFloat components[4] = {0.0, 0.0, 0.0, 0.0};
             [borderColor getRed:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
             [result appendFormat:@"BorderColorR%fG:%fB:%fA:%f", components[0], components[1], components[2], components[3]];
         }
-        NSNumber *borderWidth = [dic objectForKey:DCHImageTurboKey_BorderWidth];
+        NSNumber *borderWidth = [dic objectForKey:key_DCHImageTurbo_UIImage_BorderWidth];
         if (borderWidth) {
             [result appendFormat:@"BorderWidth%f", [borderWidth floatValue]];
         }
