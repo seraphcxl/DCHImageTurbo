@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		784E21B2A8431367C676975E /* libPods-DCHImageTurboDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79AB770C2E78CBA08F6721 /* libPods-DCHImageTurboDemo.a */; };
-		8D200B501B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */; };
 		8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */; };
+		8D4694FF1B672D5D000EFE53 /* UIImage+DCHImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4694FE1B672D5D000EFE53 /* UIImage+DCHImageEffect.m */; };
+		8D4695021B675670000EFE53 /* UIImageView+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4695011B675670000EFE53 /* UIImageView+DCHImageTurbo.m */; };
+		8D4695051B67567E000EFE53 /* UIButton+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4695041B67567E000EFE53 /* UIButton+DCHImageTurbo.m */; };
 		8D682B751B4012E300EAFD23 /* UIImage+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */; };
 		8DADCC221B40CDEE00A2CEA5 /* 梵高_向日葵.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8DADCC211B40CDEE00A2CEA5 /* 梵高_向日葵.jpg */; };
 		8DADCC251B40D58F00A2CEA5 /* DCHFileMappingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DADCC241B40D58F00A2CEA5 /* DCHFileMappingImage.m */; };
@@ -21,7 +23,6 @@
 		8DDD7A691B3D17BF007A0963 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD7A681B3D17BF007A0963 /* Images.xcassets */; };
 		8DDD7A6C1B3D17BF007A0963 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD7A6A1B3D17BF007A0963 /* LaunchScreen.xib */; };
 		8DDD7A781B3D17BF007A0963 /* DCHImageTurboDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDD7A771B3D17BF007A0963 /* DCHImageTurboDemoTests.m */; };
-		8DDD7A821B3D1A3D007A0963 /* UIImageView+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B4E1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.h */; };
 		8DDD7A831B3D1A3D007A0963 /* DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B511B3C500B004DC94B /* DCHImageTurbo.h */; };
 		8DDD7A841B3D1A3D007A0963 /* DCHImageTurboCommonConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D200B521B3C5090004DC94B /* DCHImageTurboCommonConstants.h */; };
 		8DDD7A851B3D1F34007A0963 /* libDCHImageTurbo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DBAA7201B3BE8E20024A0F3 /* libDCHImageTurbo.a */; };
@@ -61,7 +62,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				8DDD7A821B3D1A3D007A0963 /* UIImageView+DCHImageTurbo.h in CopyFiles */,
 				8DDD7A831B3D1A3D007A0963 /* DCHImageTurbo.h in CopyFiles */,
 				8DDD7A841B3D1A3D007A0963 /* DCHImageTurboCommonConstants.h in CopyFiles */,
 			);
@@ -75,11 +75,15 @@
 		48276C4CF3CA5BA4555F5499 /* Pods-DCHImageTurbo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCHImageTurbo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCHImageTurbo/Pods-DCHImageTurbo.release.xcconfig"; sourceTree = "<group>"; };
 		65E4F0CF38D63D1AB717758F /* Pods-DCHImageTurboDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCHImageTurboDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCHImageTurboDemo/Pods-DCHImageTurboDemo.release.xcconfig"; sourceTree = "<group>"; };
 		82D3730F1BFAF19FD8800E93 /* libPods-DCHImageTurbo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DCHImageTurbo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D200B4E1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DCHImageTurbo.h"; sourceTree = "<group>"; };
-		8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DCHImageTurbo.m"; sourceTree = "<group>"; };
 		8D200B511B3C500B004DC94B /* DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageTurbo.h; sourceTree = "<group>"; };
 		8D200B521B3C5090004DC94B /* DCHImageTurboCommonConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageTurboCommonConstants.h; sourceTree = "<group>"; };
 		8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHImageTurboCommonConstants.m; sourceTree = "<group>"; };
+		8D4694FD1B672D5D000EFE53 /* UIImage+DCHImageEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DCHImageEffect.h"; sourceTree = "<group>"; };
+		8D4694FE1B672D5D000EFE53 /* UIImage+DCHImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DCHImageEffect.m"; sourceTree = "<group>"; };
+		8D4695001B675670000EFE53 /* UIImageView+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DCHImageTurbo.h"; sourceTree = "<group>"; };
+		8D4695011B675670000EFE53 /* UIImageView+DCHImageTurbo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DCHImageTurbo.m"; sourceTree = "<group>"; };
+		8D4695031B67567E000EFE53 /* UIButton+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+DCHImageTurbo.h"; sourceTree = "<group>"; };
+		8D4695041B67567E000EFE53 /* UIButton+DCHImageTurbo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+DCHImageTurbo.m"; sourceTree = "<group>"; };
 		8D682B731B4012E300EAFD23 /* UIImage+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DCHImageTurbo.h"; sourceTree = "<group>"; };
 		8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DCHImageTurbo.m"; sourceTree = "<group>"; };
 		8DADCC211B40CDEE00A2CEA5 /* 梵高_向日葵.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "梵高_向日葵.jpg"; sourceTree = "<group>"; };
@@ -187,14 +191,18 @@
 				8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */,
 				8DDD7A881B3D45AE007A0963 /* DCHLoadLocalImageOperation.h */,
 				8DDD7A891B3D45AE007A0963 /* DCHLoadLocalImageOperation.m */,
-				8D200B4E1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.h */,
-				8D200B4F1B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m */,
 				8DFA94141B3D7A0E0069F64B /* UIView+DCHImageTurbo.h */,
 				8DFA94151B3D7A0E0069F64B /* UIView+DCHImageTurbo.m */,
 				8D682B731B4012E300EAFD23 /* UIImage+DCHImageTurbo.h */,
 				8D682B741B4012E300EAFD23 /* UIImage+DCHImageTurbo.m */,
 				8DADCC231B40D58F00A2CEA5 /* DCHFileMappingImage.h */,
 				8DADCC241B40D58F00A2CEA5 /* DCHFileMappingImage.m */,
+				8D4694FD1B672D5D000EFE53 /* UIImage+DCHImageEffect.h */,
+				8D4694FE1B672D5D000EFE53 /* UIImage+DCHImageEffect.m */,
+				8D4695001B675670000EFE53 /* UIImageView+DCHImageTurbo.h */,
+				8D4695011B675670000EFE53 /* UIImageView+DCHImageTurbo.m */,
+				8D4695031B67567E000EFE53 /* UIButton+DCHImageTurbo.h */,
+				8D4695041B67567E000EFE53 /* UIButton+DCHImageTurbo.m */,
 			);
 			path = DCHImageTurbo;
 			sourceTree = "<group>";
@@ -485,11 +493,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D4695021B675670000EFE53 /* UIImageView+DCHImageTurbo.m in Sources */,
 				8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */,
 				8DDD7A8A1B3D45AE007A0963 /* DCHLoadLocalImageOperation.m in Sources */,
 				8DADCC251B40D58F00A2CEA5 /* DCHFileMappingImage.m in Sources */,
 				8D682B751B4012E300EAFD23 /* UIImage+DCHImageTurbo.m in Sources */,
-				8D200B501B3C2B83004DC94B /* UIImageView+DCHImageTurbo.m in Sources */,
+				8D4694FF1B672D5D000EFE53 /* UIImage+DCHImageEffect.m in Sources */,
+				8D4695051B67567E000EFE53 /* UIButton+DCHImageTurbo.m in Sources */,
 				8DFA94161B3D7A0E0069F64B /* UIView+DCHImageTurbo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

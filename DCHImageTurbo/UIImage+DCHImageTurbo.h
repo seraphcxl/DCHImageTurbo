@@ -20,12 +20,6 @@ extern NSString * const DCHImageTurboKey_BorderWidth;  // NSNumber
 #pragma mark - customize
 + (UIImage *)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
 
-#pragma mark - Decode
-+ (UIImage *)dch_decodedImageWithImage:(UIImage *)image;
-
-#pragma mark - GaussianBlur
-+ (UIImage *)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius;
-
 + (NSString *)layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode;
 
 @end
