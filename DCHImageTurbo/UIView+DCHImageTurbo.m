@@ -16,11 +16,18 @@
 #import "DCHLoadLocalImageOperation.h"
 #import "DCHFileMappingImage.h"
 
-NSString * const key_DCHImageTurbo_UIView_ImageURLStorage = @"key_DCHImageTurbo_UIView_ImageURLStorage";
+NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage = @"key_DCHImageTurbo_UIView_ImageLocationStorage";
 
 @implementation UIView (DCHImageTurbo)
 
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(ImageURLStorage, key_DCHImageTurbo_UIView_ImageURLStorage, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+- (NSMutableDictionary *)getImageLocationStorage {
+    NSMutableDictionary *result = objc_getAssociatedObject(self, (__bridge const void *)(key_DCHImageTurbo_UIView_ImageLocationStorage));
+    if (!result) {
+        result = [NSMutableDictionary dictionary];
+        objc_setAssociatedObject(self, (__bridge const void *)(key_DCHImageTurbo_UIView_ImageLocationStorage), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return result;
+}
 
 - (CGFloat)dch_frameWidth {
     return self.frame.size.width;

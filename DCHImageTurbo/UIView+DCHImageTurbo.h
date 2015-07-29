@@ -16,11 +16,11 @@ typedef NSDictionary *(^DCHImageTurboCustomizeBlock)();
 typedef void(^DCHImageTurboUIRenderBlock)(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL);
 typedef void(^DCHImageTurboOperationHandlerBlock)(id<SDWebImageOperation> operation, NSString *imagePath, NSURL *imageURL);
 
-extern NSString * const key_DCHImageTurbo_UIView_ImageURLStorage;
+extern NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage;
 
 @interface UIView (DCHImageTurbo)
 
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(ImageURLStorage)
+- (NSMutableDictionary *)getImageLocationStorage;
 
 - (CGFloat)dch_frameWidth;
 - (CGFloat)dch_frameHeight;

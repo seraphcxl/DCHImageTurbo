@@ -22,8 +22,8 @@ extern NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadO
 @interface UIImageView (DCHImageTurbo)
 
 #pragma mark - Web image
-- (NSURL *)currentWebImageURL;
-- (void)setWebImageURL:(NSURL *)url;
+- (NSURL *)dch_currentWebImageURL;
+- (void)dch_setWebImageURL:(NSURL *)url;
 
 - (void)dch_setWebImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentWebImageLoadOperation;
@@ -32,12 +32,13 @@ extern NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadO
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder resize:(CGSize)newSize scale:(CGFloat)scale completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder cornerRadius:(CGFloat)cornerRadius completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor completed:(DCHImageTurboLoadImageCompletionBlock)completion;
+- (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options customize:(DCHImageTurboCustomizeBlock)customization progress:(SDWebImageDownloaderProgressBlock)progress completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 #pragma mark - Web highlighted image
-- (NSURL *)currentWebHighlightedImageURL;
-- (void)setWebHighlightedImageURL:(NSURL *)url;
+- (NSURL *)dch_currentWebHighlightedImageURL;
+- (void)dch_setWebHighlightedImageURL:(NSURL *)url;
 
 - (void)dch_setWebHighlightedImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentWebHighlightedImageLoadOperation;
@@ -46,12 +47,13 @@ extern NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadO
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder resize:(CGSize)newSize scale:(CGFloat)scale completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder cornerRadius:(CGFloat)cornerRadius completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor completed:(DCHImageTurboLoadImageCompletionBlock)completion;
+- (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options customize:(DCHImageTurboCustomizeBlock)customization progress:(SDWebImageDownloaderProgressBlock)progress completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 #pragma mark - Local image
-- (NSString *)currentLocalImagePath;
-- (void)setLocalImagePath:(NSString *)path;
+- (NSString *)dch_currentLocalImagePath;
+- (void)dch_setLocalImagePath:(NSString *)path;
 
 - (void)dch_setLocalImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentLocalImageLoadOperation;
@@ -60,12 +62,13 @@ extern NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadO
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder resize:(CGSize)newSize scale:(CGFloat)scale completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder cornerRadius:(CGFloat)cornerRadius completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor completed:(DCHImageTurboLoadImageCompletionBlock)completion;
+- (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customization completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 #pragma mark - Local highlighted image
-- (NSString *)currentLocalHighlightedImagePath;
-- (void)setLocalHighlightedImagePath:(NSString *)path;
+- (NSString *)dch_currentLocalHighlightedImagePath;
+- (void)dch_setLocalHighlightedImagePath:(NSString *)path;
 
 - (void)dch_setLocalHighlightedImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentLocalHighlightedImageLoadOperation;
@@ -74,11 +77,12 @@ extern NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadO
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder resize:(CGSize)newSize scale:(CGFloat)scale completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder cornerRadius:(CGFloat)cornerRadius completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor completed:(DCHImageTurboLoadImageCompletionBlock)completion;
+- (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customization completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 #pragma mark - Action
-- (void)dch_cleanAllImageURLs;
+- (void)dch_cleanAllImageLocations;
 - (void)dch_cancelAllImageLoadOperations;
 
 @end

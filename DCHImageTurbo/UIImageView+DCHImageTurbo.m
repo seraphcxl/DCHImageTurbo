@@ -25,12 +25,12 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
 @implementation UIImageView (DCHImageTurbo)
 
 #pragma mark - Web image
-- (NSURL *)currentWebImageURL {
-    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_WebImageURL];
+- (NSURL *)dch_currentWebImageURL {
+    return [[self getImageLocationStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_WebImageURL];
 }
 
-- (void)setWebImageURL:(NSURL *)url {
-    [[self getImageURLStorage] dch_safe_setObject:url forKey:key_DCHImageTurbo_UIImageView_WebImageURL];
+- (void)dch_setWebImageURL:(NSURL *)url {
+    [[self getImageLocationStorage] dch_safe_setObject:url forKey:key_DCHImageTurbo_UIImageView_WebImageURL];
 }
 
 - (void)dch_setWebImageLoadOperation:(id)operation {
@@ -87,6 +87,22 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
     } progress:nil completed:completion];
 }
 
+- (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion {
+    @weakify(self)
+    [self dch_setImageWithURL:url placeholderImage:placeholder options:0 customize:^NSDictionary *{
+        @strongify(self)
+        NSMutableDictionary *result = [NSMutableDictionary dictionary];
+        [result dch_safe_setObject:@([self dch_frameWidth]) forKey:key_DCHImageTurbo_UIImage_ResizeWidth];
+        [result dch_safe_setObject:@([self dch_frameHeight]) forKey:key_DCHImageTurbo_UIImage_ResizeHeight];
+        [result dch_safe_setObject:@([self dch_screenScale]) forKey:key_DCHImageTurbo_UIImage_ResizeScale];
+        [result dch_safe_setObject:@(radius) forKey:key_DCHImageTurbo_UIImage_BlurRadius];
+        [result dch_safe_setObject:tintColor forKey:key_DCHImageTurbo_UIImage_BlurTintColor];
+        [result dch_safe_setObject:@(saturationDeltaFactor) forKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];
+        [result dch_safe_setObject:maskImage forKey:key_DCHImageTurbo_UIImage_BlurMaskImage];
+        return result;
+    } progress:nil completed:completion];
+}
+
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options customize:(DCHImageTurboCustomizeBlock)customization progress:(SDWebImageDownloaderProgressBlock)progress completed:(DCHImageTurboLoadImageCompletionBlock)completion {
     @weakify(self)
     do {
@@ -95,9 +111,9 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
         }
         
         [self dch_cancelAllImageLoadOperations];
-        [self dch_cleanAllImageURLs];
+        [self dch_cleanAllImageLocations];
         
-        [self setWebImageURL:url];
+        [self dch_setWebImageURL:url];
         
         if (!(options & SDWebImageDelayPlaceholder) && placeholder) {
             [NSThread dch_runInMain:^{
@@ -119,12 +135,12 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
 }
 
 #pragma mark - Web highlighted image
-- (NSURL *)currentWebHighlightedImageURL {
-    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageURL];
+- (NSURL *)dch_currentWebHighlightedImageURL {
+    return [[self getImageLocationStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageURL];
 }
 
-- (void)setWebHighlightedImageURL:(NSURL *)url {
-    [[self getImageURLStorage] dch_safe_setObject:url forKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageURL];
+- (void)dch_setWebHighlightedImageURL:(NSURL *)url {
+    [[self getImageLocationStorage] dch_safe_setObject:url forKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageURL];
 }
 
 - (void)dch_setWebHighlightedImageLoadOperation:(id)operation {
@@ -181,6 +197,22 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
     } progress:nil completed:completion];
 }
 
+- (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion {
+    @weakify(self)
+    [self dch_setHighlightedImageWithURL:url placeholderImage:placeholder options:0 customize:^NSDictionary *{
+        @strongify(self)
+        NSMutableDictionary *result = [NSMutableDictionary dictionary];
+        [result dch_safe_setObject:@([self dch_frameWidth]) forKey:key_DCHImageTurbo_UIImage_ResizeWidth];
+        [result dch_safe_setObject:@([self dch_frameHeight]) forKey:key_DCHImageTurbo_UIImage_ResizeHeight];
+        [result dch_safe_setObject:@([self dch_screenScale]) forKey:key_DCHImageTurbo_UIImage_ResizeScale];
+        [result dch_safe_setObject:@(radius) forKey:key_DCHImageTurbo_UIImage_BlurRadius];
+        [result dch_safe_setObject:tintColor forKey:key_DCHImageTurbo_UIImage_BlurTintColor];
+        [result dch_safe_setObject:@(saturationDeltaFactor) forKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];
+        [result dch_safe_setObject:maskImage forKey:key_DCHImageTurbo_UIImage_BlurMaskImage];
+        return result;
+    } progress:nil completed:completion];
+}
+
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options customize:(DCHImageTurboCustomizeBlock)customization progress:(SDWebImageDownloaderProgressBlock)progress completed:(DCHImageTurboLoadImageCompletionBlock)completion {
     @weakify(self)
     do {
@@ -189,9 +221,9 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
         }
         
         [self dch_cancelAllImageLoadOperations];
-        [self dch_cleanAllImageURLs];
+        [self dch_cleanAllImageLocations];
         
-        [self setWebHighlightedImageURL:url];
+        [self dch_setWebHighlightedImageURL:url];
         
         if (!(options & SDWebImageDelayPlaceholder) && placeholder) {
             [NSThread dch_runInMain:^{
@@ -213,11 +245,11 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
 }
 
 #pragma mark - Local image
-- (NSString *)currentLocalImagePath {
-    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_LocalImagePath];
+- (NSString *)dch_currentLocalImagePath {
+    return [[self getImageLocationStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_LocalImagePath];
 }
-- (void)setLocalImagePath:(NSString *)path {
-    [[self getImageURLStorage] dch_safe_setObject:path forKey:key_DCHImageTurbo_UIImageView_LocalImagePath];
+- (void)dch_setLocalImagePath:(NSString *)path {
+    [[self getImageLocationStorage] dch_safe_setObject:path forKey:key_DCHImageTurbo_UIImageView_LocalImagePath];
 }
 
 - (void)dch_setLocalImageLoadOperation:(id)operation {
@@ -274,12 +306,28 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
     } completed:completion];
 }
 
+- (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion {
+    @weakify(self)
+    [self dch_setImageWithContentsOfFile:path placeholderImage:placeholder customize:^NSDictionary *{
+        @strongify(self)
+        NSMutableDictionary *result = [NSMutableDictionary dictionary];
+        [result dch_safe_setObject:@([self dch_frameWidth]) forKey:key_DCHImageTurbo_UIImage_ResizeWidth];
+        [result dch_safe_setObject:@([self dch_frameHeight]) forKey:key_DCHImageTurbo_UIImage_ResizeHeight];
+        [result dch_safe_setObject:@([self dch_screenScale]) forKey:key_DCHImageTurbo_UIImage_ResizeScale];
+        [result dch_safe_setObject:@(radius) forKey:key_DCHImageTurbo_UIImage_BlurRadius];
+        [result dch_safe_setObject:tintColor forKey:key_DCHImageTurbo_UIImage_BlurTintColor];
+        [result dch_safe_setObject:@(saturationDeltaFactor) forKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];
+        [result dch_safe_setObject:maskImage forKey:key_DCHImageTurbo_UIImage_BlurMaskImage];
+        return result;
+    } completed:completion];
+}
+
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customization completed:(DCHImageTurboLoadImageCompletionBlock)completion {
     @weakify(self)
     [self dch_cancelAllImageLoadOperations];
-    [self dch_cleanAllImageURLs];
+    [self dch_cleanAllImageLocations];
     
-    [self setLocalImagePath:path];
+    [self dch_setLocalImagePath:path];
     
     if (placeholder) {
         [NSThread dch_runInMain:^{
@@ -300,12 +348,12 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
 }
 
 #pragma mark - Local highlighted image
-- (NSString *)currentLocalHighlightedImagePath {
-    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath];
+- (NSString *)dch_currentLocalHighlightedImagePath {
+    return [[self getImageLocationStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath];
 }
 
-- (void)setLocalHighlightedImagePath:(NSString *)path {
-    [[self getImageURLStorage] dch_safe_setObject:path forKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath];
+- (void)dch_setLocalHighlightedImagePath:(NSString *)path {
+    [[self getImageLocationStorage] dch_safe_setObject:path forKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath];
 }
 
 - (void)dch_setLocalHighlightedImageLoadOperation:(id)operation {
@@ -362,12 +410,28 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
     } completed:completion];
 }
 
+- (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder applyBlurWithRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage completed:(DCHImageTurboLoadImageCompletionBlock)completion {
+    @weakify(self)
+    [self dch_setHighlightedImageWithContentsOfFile:path placeholderImage:placeholder customize:^NSDictionary *{
+        @strongify(self)
+        NSMutableDictionary *result = [NSMutableDictionary dictionary];
+        [result dch_safe_setObject:@([self dch_frameWidth]) forKey:key_DCHImageTurbo_UIImage_ResizeWidth];
+        [result dch_safe_setObject:@([self dch_frameHeight]) forKey:key_DCHImageTurbo_UIImage_ResizeHeight];
+        [result dch_safe_setObject:@([self dch_screenScale]) forKey:key_DCHImageTurbo_UIImage_ResizeScale];
+        [result dch_safe_setObject:@(radius) forKey:key_DCHImageTurbo_UIImage_BlurRadius];
+        [result dch_safe_setObject:tintColor forKey:key_DCHImageTurbo_UIImage_BlurTintColor];
+        [result dch_safe_setObject:@(saturationDeltaFactor) forKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];
+        [result dch_safe_setObject:maskImage forKey:key_DCHImageTurbo_UIImage_BlurMaskImage];
+        return result;
+    } completed:completion];
+}
+
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customization completed:(DCHImageTurboLoadImageCompletionBlock)completion {
     @weakify(self)
     [self dch_cancelAllImageLoadOperations];
-    [self dch_cleanAllImageURLs];
+    [self dch_cleanAllImageLocations];
     
-    [self setLocalHighlightedImagePath:path];
+    [self dch_setLocalHighlightedImagePath:path];
     
     if (placeholder) {
         [NSThread dch_runInMain:^{
@@ -388,11 +452,11 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
 }
 
 #pragma mark - Action
-- (void)dch_cleanAllImageURLs {
-    [self setWebImageURL:nil];
-    [self setWebHighlightedImageURL:nil];
-    [self setLocalImagePath:nil];
-    [self setLocalHighlightedImagePath:nil];
+- (void)dch_cleanAllImageLocations {
+    [self dch_setWebImageURL:nil];
+    [self dch_setWebHighlightedImageURL:nil];
+    [self dch_setLocalImagePath:nil];
+    [self dch_setLocalHighlightedImagePath:nil];
 }
 
 - (void)dch_cancelAllImageLoadOperations {

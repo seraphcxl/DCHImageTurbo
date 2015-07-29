@@ -233,7 +233,7 @@
 + (UIImage *)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
     UIImage *result = nil;
     do {
-        if (!image || !image.CGImage || image.size.width < 1 || image.size.height < 1 || !maskImage || !maskImage.CGImage) {
+        if (!image || !image.CGImage || image.size.width < 1 || image.size.height < 1) {
             break;
         }
         
