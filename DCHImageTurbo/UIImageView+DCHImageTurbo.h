@@ -7,22 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Tourbillon/DCHTourbillon.h>
 #import "UIView+DCHImageTurbo.h"
 
-extern NSString * const key_DCHImageTurbo_UIImageView_webImageLoadOperation;
-extern NSString * const key_DCHImageTurbo_UIImageView_webHighlightedImageLoadOperation;
-extern NSString * const key_DCHImageTurbo_UIImageView_localImageLoadOperation;
-extern NSString * const key_DCHImageTurbo_UIImageView_localHighlightedImageLoadOperation;
+extern NSString * const key_DCHImageTurbo_UIImageView_WebImageURL;
+extern NSString * const key_DCHImageTurbo_UIImageView_WebHighlightedImageURL;
+extern NSString * const key_DCHImageTurbo_UIImageView_LocalImagePath;
+extern NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath;
+
+extern NSString * const key_DCHImageTurbo_UIImageView_WebImageLoadOperation;
+extern NSString * const key_DCHImageTurbo_UIImageView_WebHighlightedImageLoadOperation;
+extern NSString * const key_DCHImageTurbo_UIImageView_LocalImageLoadOperation;
+extern NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperation;
 
 @interface UIImageView (DCHImageTurbo)
 
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(WebImageURL)
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(WebHighlightedImageURL)
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(LocalImagePath)
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(LocalHighlightedImagePath)
-
 #pragma mark - Web image
+- (NSURL *)currentWebImageURL;
+- (void)setWebImageURL:(NSURL *)url;
+
 - (void)dch_setWebImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentWebImageLoadOperation;
 
@@ -34,6 +36,9 @@ DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(LocalHighlightedImagePath)
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options customize:(DCHImageTurboCustomizeBlock)customization progress:(SDWebImageDownloaderProgressBlock)progress completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 #pragma mark - Web highlighted image
+- (NSURL *)currentWebHighlightedImageURL;
+- (void)setWebHighlightedImageURL:(NSURL *)url;
+
 - (void)dch_setWebHighlightedImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentWebHighlightedImageLoadOperation;
 
@@ -45,6 +50,9 @@ DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(LocalHighlightedImagePath)
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options customize:(DCHImageTurboCustomizeBlock)customization progress:(SDWebImageDownloaderProgressBlock)progress completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 #pragma mark - Local image
+- (NSString *)currentLocalImagePath;
+- (void)setLocalImagePath:(NSString *)path;
+
 - (void)dch_setLocalImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentLocalImageLoadOperation;
 
@@ -56,6 +64,9 @@ DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(LocalHighlightedImagePath)
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customization completed:(DCHImageTurboLoadImageCompletionBlock)completion;
 
 #pragma mark - Local highlighted image
+- (NSString *)currentLocalHighlightedImagePath;
+- (void)setLocalHighlightedImagePath:(NSString *)path;
+
 - (void)dch_setLocalHighlightedImageLoadOperation:(id)operation;
 - (void)dch_cancelCurrentLocalHighlightedImageLoadOperation;
 

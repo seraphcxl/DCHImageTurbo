@@ -16,7 +16,11 @@
 #import "DCHLoadLocalImageOperation.h"
 #import "DCHFileMappingImage.h"
 
+NSString * const key_DCHImageTurbo_UIView_ImageURLStorage = @"key_DCHImageTurbo_UIView_ImageURLStorage";
+
 @implementation UIView (DCHImageTurbo)
+
+DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(ImageURLStorage, key_DCHImageTurbo_UIView_ImageURLStorage, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
 - (CGFloat)dch_frameWidth {
     return self.frame.size.width;

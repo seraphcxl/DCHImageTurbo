@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SDWebImage/SDWebImageManager.h>
+#import <Tourbillon/DCHTourbillon.h>
 
 typedef void(^DCHImageTurboLoadImageCompletionBlock)(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL, SDImageCacheType cacheType);
 typedef void(^DCHImageTurboLoadImageFromCacheCompletionBlock)(UIImage *image, NSError *error, NSString *key, SDImageCacheType cacheType);
@@ -15,7 +16,11 @@ typedef NSDictionary *(^DCHImageTurboCustomizeBlock)();
 typedef void(^DCHImageTurboUIRenderBlock)(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL);
 typedef void(^DCHImageTurboOperationHandlerBlock)(id<SDWebImageOperation> operation, NSString *imagePath, NSURL *imageURL);
 
+extern NSString * const key_DCHImageTurbo_UIView_ImageURLStorage;
+
 @interface UIView (DCHImageTurbo)
+
+DCH_DEFINE_ASSOCIATEDOBJECT_FOR_HEADER(ImageURLStorage)
 
 - (CGFloat)dch_frameWidth;
 - (CGFloat)dch_frameHeight;

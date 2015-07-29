@@ -12,30 +12,38 @@
 #import <libextobjc/EXTScope.h>
 #import "UIImage+DCHImageTurbo.h"
 
-NSString * const key_DCHImageTurbo_UIImageView_webImageLoadOperation = @"key_DCHImageTurbo_UIImageView_webImageLoadOperation";
-NSString * const key_DCHImageTurbo_UIImageView_webHighlightedImageLoadOperation = @"key_DCHImageTurbo_UIImageView_webHighlightedImageLoadOperation";
-NSString * const key_DCHImageTurbo_UIImageView_localImageLoadOperation = @"key_DCHImageTurbo_UIImageView_localImageLoadOperation";
-NSString * const key_DCHImageTurbo_UIImageView_localHighlightedImageLoadOperation = @"key_DCHImageTurbo_UIImageView_localHighlightedImageLoadOperation";
+NSString * const key_DCHImageTurbo_UIImageView_WebImageURL = @"key_DCHImageTurbo_UIImageView_WebImageURL";
+NSString * const key_DCHImageTurbo_UIImageView_WebHighlightedImageURL = @"key_DCHImageTurbo_UIImageView_WebHighlightedImageURL";
+NSString * const key_DCHImageTurbo_UIImageView_LocalImagePath = @"key_DCHImageTurbo_UIImageView_LocalImagePath";
+NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath = @"key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath";
+
+NSString * const key_DCHImageTurbo_UIImageView_WebImageLoadOperation = @"key_DCHImageTurbo_UIImageView_WebImageLoadOperation";
+NSString * const key_DCHImageTurbo_UIImageView_WebHighlightedImageLoadOperation = @"key_DCHImageTurbo_UIImageView_WebHighlightedImageLoadOperation";
+NSString * const key_DCHImageTurbo_UIImageView_LocalImageLoadOperation = @"key_DCHImageTurbo_UIImageView_LocalImageLoadOperation";
+NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperation = @"key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperation";
 
 @implementation UIImageView (DCHImageTurbo)
 
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(WebImageURL, key_DCHImageTurbo_UIImageView_webImageLoadOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(WebHighlightedImageURL, key_DCHImageTurbo_UIImageView_webHighlightedImageLoadOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(LocalImagePath, key_DCHImageTurbo_UIImageView_localImageLoadOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(LocalHighlightedImagePath, key_DCHImageTurbo_UIImageView_localHighlightedImageLoadOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
 #pragma mark - Web image
+- (NSURL *)currentWebImageURL {
+    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_WebImageURL];
+}
+
+- (void)setWebImageURL:(NSURL *)url {
+    [[self getImageURLStorage] dch_safe_setObject:url forKey:key_DCHImageTurbo_UIImageView_WebImageURL];
+}
+
 - (void)dch_setWebImageLoadOperation:(id)operation {
     do {
         if (DCH_IsEmpty(operation)) {
             break;
         }
-        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_webImageLoadOperation];
+        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_WebImageLoadOperation];
     } while (NO);
 }
 
 - (void)dch_cancelCurrentWebImageLoadOperation {
-    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_webImageLoadOperation];
+    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_WebImageLoadOperation];
 }
 
 - (void)dch_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(DCHImageTurboLoadImageCompletionBlock)completion {
@@ -111,17 +119,25 @@ DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(LocalHighlightedImagePath, key_DCHImageTur
 }
 
 #pragma mark - Web highlighted image
+- (NSURL *)currentWebHighlightedImageURL {
+    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageURL];
+}
+
+- (void)setWebHighlightedImageURL:(NSURL *)url {
+    [[self getImageURLStorage] dch_safe_setObject:url forKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageURL];
+}
+
 - (void)dch_setWebHighlightedImageLoadOperation:(id)operation {
     do {
         if (DCH_IsEmpty(operation)) {
             break;
         }
-        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_webHighlightedImageLoadOperation];
+        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageLoadOperation];
     } while (NO);
 }
 
 - (void)dch_cancelCurrentWebHighlightedImageLoadOperation {
-    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_webHighlightedImageLoadOperation];
+    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_WebHighlightedImageLoadOperation];
 }
 
 - (void)dch_setHighlightedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(DCHImageTurboLoadImageCompletionBlock)completion {
@@ -197,17 +213,24 @@ DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(LocalHighlightedImagePath, key_DCHImageTur
 }
 
 #pragma mark - Local image
+- (NSString *)currentLocalImagePath {
+    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_LocalImagePath];
+}
+- (void)setLocalImagePath:(NSString *)path {
+    [[self getImageURLStorage] dch_safe_setObject:path forKey:key_DCHImageTurbo_UIImageView_LocalImagePath];
+}
+
 - (void)dch_setLocalImageLoadOperation:(id)operation {
     do {
         if (DCH_IsEmpty(operation)) {
             break;
         }
-        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_localImageLoadOperation];
+        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_LocalImageLoadOperation];
     } while (NO);
 }
 
 - (void)dch_cancelCurrentLocalImageLoadOperation {
-    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_localImageLoadOperation];
+    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_LocalImageLoadOperation];
 }
 
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder completed:(DCHImageTurboLoadImageCompletionBlock)completion {
@@ -277,17 +300,25 @@ DCH_DEFINE_ASSOCIATEDOBJECT_FOR_CLASS(LocalHighlightedImagePath, key_DCHImageTur
 }
 
 #pragma mark - Local highlighted image
+- (NSString *)currentLocalHighlightedImagePath {
+    return [[self getImageURLStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath];
+}
+
+- (void)setLocalHighlightedImagePath:(NSString *)path {
+    [[self getImageURLStorage] dch_safe_setObject:path forKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImagePath];
+}
+
 - (void)dch_setLocalHighlightedImageLoadOperation:(id)operation {
     do {
         if (DCH_IsEmpty(operation)) {
             break;
         }
-        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_localHighlightedImageLoadOperation];
+        [self sd_setImageLoadOperation:operation forKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperation];
     } while (NO);
 }
 
 - (void)dch_cancelCurrentLocalHighlightedImageLoadOperation {
-    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_localHighlightedImageLoadOperation];
+    [self sd_cancelImageLoadOperationWithKey:key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperation];
 }
 
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder completed:(DCHImageTurboLoadImageCompletionBlock)completion {
