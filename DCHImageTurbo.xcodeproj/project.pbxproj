@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		784E21B2A8431367C676975E /* libPods-DCHImageTurboDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79AB770C2E78CBA08F6721 /* libPods-DCHImageTurboDemo.a */; };
+		8D1DB2921B690B2F000B7953 /* DCHLoadLocalImageOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DDD7A881B3D45AE007A0963 /* DCHLoadLocalImageOperation.h */; };
+		8D1DB2931B690B2F000B7953 /* DCHFileMappingImage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DADCC231B40D58F00A2CEA5 /* DCHFileMappingImage.h */; };
+		8D1DB2941B690B2F000B7953 /* UIView+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DFA94141B3D7A0E0069F64B /* UIView+DCHImageTurbo.h */; };
+		8D1DB2951B690B2F000B7953 /* UIImage+DCHImageEffect.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D4694FD1B672D5D000EFE53 /* UIImage+DCHImageEffect.h */; };
+		8D1DB2961B690B2F000B7953 /* UIImage+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D682B731B4012E300EAFD23 /* UIImage+DCHImageTurbo.h */; };
+		8D1DB2971B690B2F000B7953 /* UIImageView+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D4695001B675670000EFE53 /* UIImageView+DCHImageTurbo.h */; };
+		8D1DB2981B690B2F000B7953 /* UIButton+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D4695031B67567E000EFE53 /* UIButton+DCHImageTurbo.h */; };
 		8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */; };
 		8D4694FF1B672D5D000EFE53 /* UIImage+DCHImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4694FE1B672D5D000EFE53 /* UIImage+DCHImageEffect.m */; };
 		8D4695021B675670000EFE53 /* UIImageView+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4695011B675670000EFE53 /* UIImageView+DCHImageTurbo.m */; };
@@ -62,6 +69,13 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				8D1DB2921B690B2F000B7953 /* DCHLoadLocalImageOperation.h in CopyFiles */,
+				8D1DB2931B690B2F000B7953 /* DCHFileMappingImage.h in CopyFiles */,
+				8D1DB2941B690B2F000B7953 /* UIView+DCHImageTurbo.h in CopyFiles */,
+				8D1DB2951B690B2F000B7953 /* UIImage+DCHImageEffect.h in CopyFiles */,
+				8D1DB2961B690B2F000B7953 /* UIImage+DCHImageTurbo.h in CopyFiles */,
+				8D1DB2971B690B2F000B7953 /* UIImageView+DCHImageTurbo.h in CopyFiles */,
+				8D1DB2981B690B2F000B7953 /* UIButton+DCHImageTurbo.h in CopyFiles */,
 				8DDD7A831B3D1A3D007A0963 /* DCHImageTurbo.h in CopyFiles */,
 				8DDD7A841B3D1A3D007A0963 /* DCHImageTurboCommonConstants.h in CopyFiles */,
 			);

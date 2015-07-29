@@ -12,6 +12,8 @@
 #import "DCHImageTurboCommonConstants.h"
 #import "UIView+DCHImageTurbo.h"
 #import "UIImageView+DCHImageTurbo.h"
+#import "UIButton+DCHImageTurbo.h"
+#import "UIImage+DCHImageEffect.h"
 #import "UIImage+DCHImageTurbo.h"
 #import "DCHFileMappingImage.h"
 
