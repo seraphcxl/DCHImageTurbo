@@ -324,27 +324,33 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
 
 - (void)dch_setImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customization completed:(DCHImageTurboLoadImageCompletionBlock)completion {
     @weakify(self)
-    [self dch_cancelAllImageLoadOperations];
-    [self dch_cleanAllImageLocations];
-    
-    [self dch_setLocalImagePath:path];
-    
-    if (placeholder) {
-        [NSThread dch_runInMain:^{
+    do {
+        if (DCH_IsEmpty(path)) {
+            break;
+        }
+        
+        [self dch_cancelAllImageLoadOperations];
+        [self dch_cleanAllImageLocations];
+        
+        [self dch_setLocalImagePath:path];
+        
+        if (placeholder) {
+            [NSThread dch_runInMain:^{
+                @strongify(self)
+                self.image = placeholder;
+                [self setNeedsLayout];
+            }];
+        }
+        
+        [self dch_loadImageWithContentsOfFile:path placeholderImage:placeholder customize:customization uiRender:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
             @strongify(self)
-            self.image = placeholder;
+            self.image = image;
             [self setNeedsLayout];
-        }];
-    }
-    
-    [self dch_loadImageWithContentsOfFile:path placeholderImage:placeholder customize:customization uiRender:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
-        @strongify(self)
-        self.image = image;
-        [self setNeedsLayout];
-    } operationHandler:^(id<SDWebImageOperation> operation, NSString *imagePath, NSURL *imageURL) {
-        @strongify(self)
-        [self dch_setLocalImageLoadOperation:operation];
-    } completed:completion];
+        } operationHandler:^(id<SDWebImageOperation> operation, NSString *imagePath, NSURL *imageURL) {
+            @strongify(self)
+            [self dch_setLocalImageLoadOperation:operation];
+        } completed:completion];
+    } while (NO);
 }
 
 #pragma mark - Local highlighted image
@@ -428,27 +434,33 @@ NSString * const key_DCHImageTurbo_UIImageView_LocalHighlightedImageLoadOperatio
 
 - (void)dch_setHighlightedImageWithContentsOfFile:(NSString *)path placeholderImage:(UIImage *)placeholder customize:(DCHImageTurboCustomizeBlock)customization completed:(DCHImageTurboLoadImageCompletionBlock)completion {
     @weakify(self)
-    [self dch_cancelAllImageLoadOperations];
-    [self dch_cleanAllImageLocations];
-    
-    [self dch_setLocalHighlightedImagePath:path];
-    
-    if (placeholder) {
-        [NSThread dch_runInMain:^{
+    do {
+        if (DCH_IsEmpty(path)) {
+            break;
+        }
+        
+        [self dch_cancelAllImageLoadOperations];
+        [self dch_cleanAllImageLocations];
+        
+        [self dch_setLocalHighlightedImagePath:path];
+        
+        if (placeholder) {
+            [NSThread dch_runInMain:^{
+                @strongify(self)
+                self.highlightedImage = placeholder;
+                [self setNeedsLayout];
+            }];
+        }
+        
+        [self dch_loadImageWithContentsOfFile:path placeholderImage:placeholder customize:customization uiRender:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
             @strongify(self)
-            self.highlightedImage = placeholder;
+            self.highlightedImage = image;
             [self setNeedsLayout];
-        }];
-    }
-    
-    [self dch_loadImageWithContentsOfFile:path placeholderImage:placeholder customize:customization uiRender:^(UIImage *image, NSError *error, NSString *imagePath, NSURL *imageURL) {
-        @strongify(self)
-        self.highlightedImage = image;
-        [self setNeedsLayout];
-    } operationHandler:^(id<SDWebImageOperation> operation, NSString *imagePath, NSURL *imageURL) {
-        @strongify(self)
-        [self dch_setLocalHighlightedImageLoadOperation:operation];
-    } completed:completion];
+        } operationHandler:^(id<SDWebImageOperation> operation, NSString *imagePath, NSURL *imageURL) {
+            @strongify(self)
+            [self dch_setLocalHighlightedImageLoadOperation:operation];
+        } completed:completion];
+    } while (NO);
 }
 
 #pragma mark - Action
