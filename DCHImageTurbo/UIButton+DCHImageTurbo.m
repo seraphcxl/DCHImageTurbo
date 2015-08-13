@@ -182,17 +182,17 @@ NSString * const key_DCHImageTurbo_UIButton_LocalBackgroundImageLoadOperation = 
 }
 
 - (NSURL *)dch_currentWebBackgroundImageURL {
-    NSURL *url = [self dch_webImageURLStorage][@(self.state)];
+    NSURL *url = [self dch_webBackgroundImageURLStorage][@(self.state)];
     
     if (!url) {
-        url = [self dch_webImageURLStorage][@(UIControlStateNormal)];
+        url = [self dch_webBackgroundImageURLStorage][@(UIControlStateNormal)];
     }
     
     return url;
 }
 
 - (NSURL *)dch_webBackgroundImageURLForState:(UIControlState)state {
-    return [self dch_webImageURLStorage][@(state)];
+    return [self dch_webBackgroundImageURLStorage][@(state)];
 }
 
 - (void)dch_setWebBackgroundImageURL:(NSURL *)url forState:(UIControlState)state {
@@ -456,17 +456,17 @@ NSString * const key_DCHImageTurbo_UIButton_LocalBackgroundImageLoadOperation = 
 }
 
 - (NSString *)dch_currentLocalBackgroundImagePath {
-    NSString *path = [self dch_localImagePathStorage][@(self.state)];
+    NSString *path = [self dch_localBackgroundImagePathStorage][@(self.state)];
     
     if (!path) {
-        path = [self dch_localImagePathStorage][@(UIControlStateNormal)];
+        path = [self dch_localBackgroundImagePathStorage][@(UIControlStateNormal)];
     }
     
     return path;
 }
 
 - (NSString *)dch_localBackgroundImagePathForState:(UIControlState)state {
-    return [self dch_localImagePathStorage][@(state)];
+    return [self dch_localBackgroundImagePathStorage][@(state)];
 }
 
 - (void)dch_setLocalBackgroundImageURL:(NSString *)path forState:(UIControlState)state {
