@@ -10,6 +10,10 @@
 #import <Tourbillon/DCHTourbillon.h>
 #import <Accelerate/Accelerate.h>
 
+@implementation DCHImageBlurRatioRect
+
+@end
+
 @implementation UIImage (DCHImageEffect)
 
 + (UIImage *)dch_decodedImageWithImage:(UIImage *)image {
@@ -231,6 +235,13 @@
 }
 
 + (UIImage *)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
+    DCHImageBlurRatioRect *ratioRect = [[DCHImageBlurRatioRect alloc] init];
+    ratioRect.top = ratioRect.left = 0;
+    ratioRect.bottom = ratioRect.right = 1;
+    return [UIImage dch_applyBlur:image forRect:ratioRect withRadius:blurRadius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:maskImage didCancel:didCancel];
+}
+
++ (UIImage *)dch_applyBlur:(UIImage *)image forRect:(DCHImageBlurRatioRect *)ratioRect withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
     UIImage *result = nil;
     do {
         if (!image || !image.CGImage || image.size.width < 1 || image.size.height < 1) {
@@ -238,7 +249,10 @@
         }
         
         @autoreleasepool {
-            CGRect imageRect = { CGPointZero, image.size };
+            CGRect imageRect = {CGPointZero, image.size};
+            CGPoint imageBlurOrigin = CGPointMake(image.size.width * ratioRect.left, image.size.height * (1 - ratioRect.top));
+            CGSize imageBlurSize = CGSizeMake(image.size.width * ratioRect.right - imageBlurOrigin.x, image.size.height * (1 - ratioRect.bottom) - imageBlurOrigin.y);
+            CGRect imageBlurRect = {imageBlurOrigin, imageBlurSize};
             UIImage *effectImage = image;
             
             BOOL hasBlur = blurRadius > __FLT_EPSILON__;
@@ -249,7 +263,7 @@
                 CGContextRef effectInContext = UIGraphicsGetCurrentContext();
                 CGContextScaleCTM(effectInContext, 1.0, -1.0);
                 CGContextTranslateCTM(effectInContext, 0, -image.size.height);
-                CGContextDrawImage(effectInContext, imageRect, image.CGImage);
+                CGContextDrawImage(effectInContext, imageBlurRect, image.CGImage);
                 
                 vImage_Buffer effectInBuffer;
                 effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
@@ -285,35 +299,31 @@
                         radius += 1; // force radius to be odd so that the three box-blur methodology works.
                     }
                     
-                    if (didCancel()) {
+                    if (!DCH_IsEmpty(didCancel) && didCancel()) {
                         UIGraphicsEndImageContext();
-                        UIGraphicsEndImageContext();
-                        return nil;
+                        break;
                     }
                     
                     vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
                     
-                    if (didCancel()) {
+                    if (!DCH_IsEmpty(didCancel) && didCancel()) {
                         UIGraphicsEndImageContext();
-                        UIGraphicsEndImageContext();
-                        return nil;
+                        break;
                     }
                     
                     vImageBoxConvolve_ARGB8888(&effectOutBuffer, &effectInBuffer, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
                     
-                    if (didCancel()) {
+                    if (!DCH_IsEmpty(didCancel) && didCancel()) {
                         UIGraphicsEndImageContext();
-                        UIGraphicsEndImageContext();
-                        return nil;
+                        break;
                     }
                     
                     vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
                 }
                 
-                if (didCancel()) {
+                if (!DCH_IsEmpty(didCancel) && didCancel()) {
                     UIGraphicsEndImageContext();
-                    UIGraphicsEndImageContext();
-                    return nil;
+                    break;
                 }
                 
                 
@@ -335,17 +345,11 @@
                     if (hasBlur) {
                         vImageMatrixMultiply_ARGB8888(&effectOutBuffer, &effectInBuffer, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
                         effectImageBuffersAreSwapped = YES;
-                    }
-                    else {
+                    } else {
                         vImageMatrixMultiply_ARGB8888(&effectInBuffer, &effectOutBuffer, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
                     }
                 }
                 if (!effectImageBuffersAreSwapped) {
-                    effectImage = UIGraphicsGetImageFromCurrentImageContext();
-                }
-                UIGraphicsEndImageContext();
-                
-                if (effectImageBuffersAreSwapped) {
                     effectImage = UIGraphicsGetImageFromCurrentImageContext();
                 }
                 UIGraphicsEndImageContext();

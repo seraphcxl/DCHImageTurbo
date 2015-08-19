@@ -16,6 +16,7 @@ NSString * const key_DCHImageTurbo_UIImage_ResizeScale = @"key_DCHImageTurbo_UII
 NSString * const key_DCHImageTurbo_UIImage_CornerRadius = @"key_DCHImageTurbo_UIImage_CornerRadius";  // NSNumber
 NSString * const key_DCHImageTurbo_UIImage_BorderColor = @"key_DCHImageTurbo_UIImage_BorderColor";  // UIColor
 NSString * const key_DCHImageTurbo_UIImage_BorderWidth = @"key_DCHImageTurbo_UIImage_BorderWidth";  // NSNumber
+NSString * const key_DCHImageTurbo_UIImage_BlurRatioRect = @"key_DCHImageTurbo_UIImage_BlurRatioRect";  // DCHImageBlurRatioRect
 NSString * const key_DCHImageTurbo_UIImage_BlurRadius = @"key_DCHImageTurbo_UIImage_BlurRadius";  // NSNumber
 NSString * const key_DCHImageTurbo_UIImage_BlurTintColor = @"key_DCHImageTurbo_UIImage_BlurTintColor";  // UIColor
 NSString * const key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor = @"key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor";  // NSNumber
@@ -38,6 +39,7 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
         NSNumber *borderWidth = [paramsDic dch_safe_objectForKey:key_DCHImageTurbo_UIImage_BorderWidth];
         UIColor *borderColor = [paramsDic dch_safe_objectForKey:key_DCHImageTurbo_UIImage_BorderColor];
         
+        DCHImageBlurRatioRect *ratioRect = [paramsDic dch_safe_objectForKey:key_DCHImageTurbo_UIImage_BlurRatioRect];
         NSNumber *blurRadius = [paramsDic dch_safe_objectForKey:key_DCHImageTurbo_UIImage_BlurRadius];
         UIColor *blurTintColor = [paramsDic dch_safe_objectForKey:key_DCHImageTurbo_UIImage_BlurTintColor];
         NSNumber *blurSaturationDeltaFactor = [paramsDic dch_safe_objectForKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];
@@ -67,7 +69,12 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
         
         // Blur
         if (!DCH_IsEmpty(blurRadius) && !DCH_IsEmpty(blurTintColor) && !DCH_IsEmpty(blurSaturationDeltaFactor)) {
-            result = [UIImage dch_applyBlur:result withRadius:blurRadius.floatValue tintColor:blurTintColor saturationDeltaFactor:blurSaturationDeltaFactor.floatValue maskImage:blurMaskImage];
+            if (DCH_IsEmpty(ratioRect)) {
+                result = [UIImage dch_applyBlur:result withRadius:blurRadius.floatValue tintColor:blurTintColor saturationDeltaFactor:blurSaturationDeltaFactor.floatValue maskImage:blurMaskImage];
+            } else {
+                result = [UIImage dch_applyBlur:result forRect:ratioRect withRadius:blurRadius.floatValue tintColor:blurTintColor saturationDeltaFactor:blurSaturationDeltaFactor.floatValue maskImage:blurMaskImage didCancel:nil];
+            }
+            
         }
         
         // Corner and Border
