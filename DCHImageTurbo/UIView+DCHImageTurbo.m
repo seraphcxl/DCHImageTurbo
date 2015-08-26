@@ -42,21 +42,23 @@ NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage = @"key_DCHImageT
 }
 
 - (NSString *)dch_imageSignature:(NSDictionary *)dic {
-    NSMutableString *result = [NSMutableString string];
+    NSString *result = nil;
     do {
         if (DCH_IsEmpty(dic)) {
             break;
         }
+        
+        NSMutableString *tmp = [NSMutableString string];
         NSNumber *resizeWidth = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeWidth];
         NSNumber *resizeHeight = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeHeight];
         NSNumber *resizeScale = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeScale];
         if (resizeWidth && resizeHeight && resizeScale) {
-            [result appendFormat:@"ResizeW%fH%fS%f", [resizeWidth floatValue], [resizeHeight floatValue], [resizeScale floatValue]];
+            [tmp appendFormat:@"ResizeW%fH%fS%f", [resizeWidth floatValue], [resizeHeight floatValue], [resizeScale floatValue]];
         }
         
         NSNumber *cornerRadius = [dic objectForKey:key_DCHImageTurbo_UIImage_CornerRadius];
         if (cornerRadius) {
-            [result appendFormat:@"CornerRadius%f", [cornerRadius floatValue]];
+            [tmp appendFormat:@"CornerRadius%f", [cornerRadius floatValue]];
         }
         
         UIColor *borderColor = [dic objectForKey:key_DCHImageTurbo_UIImage_BorderColor];
@@ -64,8 +66,20 @@ NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage = @"key_DCHImageT
         if (borderColor && borderWidth) {
             CGFloat components[4] = {0.0, 0.0, 0.0, 0.0};
             [borderColor getRed:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
-            [result appendFormat:@"BorderColorR%fG:%fB:%fA:%fWidth%f", components[0], components[1], components[2], components[3], [borderWidth floatValue]];
+            [tmp appendFormat:@"BorderColorR%fG:%fB:%fA:%fWidth%f", components[0], components[1], components[2], components[3], [borderWidth floatValue]];
         }
+        
+        UIColor *blurTintColor = [dic objectForKey:key_DCHImageTurbo_UIImage_BlurTintColor];
+        NSNumber *blurRadius = [dic objectForKey:key_DCHImageTurbo_UIImage_BlurRadius];
+        NSNumber *blurSaturationDeltaFactor = [dic objectForKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];
+        NSUInteger blurMaskImageHash = [[dic objectForKey:key_DCHImageTurbo_UIImage_BlurMaskImage] hash];
+        if (blurTintColor && blurRadius && blurSaturationDeltaFactor) {
+            CGFloat components[4] = {0.0, 0.0, 0.0, 0.0};
+            [blurTintColor getRed:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
+            [tmp appendFormat:@"BlurColorR%fG:%fB:%fA:%fRadius%fSaturationDeltaFactor%fMaskImageHash%lu", components[0], components[1], components[2], components[3], [blurRadius floatValue], [blurSaturationDeltaFactor floatValue], (unsigned long)blurMaskImageHash];
+        }
+        
+        result = [NSString stringWithFormat:@"%lu", (unsigned long)[tmp hash]];
     } while (NO);
     return result;
 }
