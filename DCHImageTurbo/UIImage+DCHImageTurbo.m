@@ -24,7 +24,7 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
 
 @implementation UIImage (DCHImageTurbo)
 
-+ (UIImage *)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode {
++ (instancetype)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode {
     UIImage *result = image;
     do {
         if (DCH_IsEmpty(image) || DCH_IsEmpty(paramsDic)) {

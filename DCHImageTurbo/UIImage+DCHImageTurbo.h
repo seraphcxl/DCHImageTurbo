@@ -23,7 +23,7 @@ extern NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage;  // UIImage
 @interface UIImage (DCHImageTurbo)
 
 #pragma mark - customize
-+ (UIImage *)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
++ (instancetype)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
 
 + (NSString *)layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode;
 

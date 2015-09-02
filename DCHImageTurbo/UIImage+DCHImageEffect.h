@@ -20,18 +20,21 @@
 @interface UIImage (DCHImageEffect)
 
 #pragma mark - Decode
-+ (UIImage *)dch_decodedImageWithImage:(UIImage *)image;
++ (instancetype)dch_decodedImageWithImage:(UIImage *)image;
 
 #pragma mark - Resize
-+ (UIImage *)dch_applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut;
++ (instancetype)dch_applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut;
 
 #pragma mark - Blur
-+ (UIImage *)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
++ (instancetype)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
 
-+ (UIImage *)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel;
++ (instancetype)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel;
 
-+ (UIImage *)dch_applyBlur:(UIImage *)image forRect:(DCHImageBlurRatioRect *)ratioRect withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel;
++ (instancetype)dch_applyBlur:(UIImage *)image forRect:(DCHImageBlurRatioRect *)ratioRect withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel;
 
-+ (UIImage *)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius;
++ (instancetype)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius;
+
+#pragma mark - image with color
++ (instancetype)dch_imageWithColor:(UIColor *)color size:(CGSize)size;
 
 @end
