@@ -154,4 +154,51 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
     return result;
 }
 
++ (NSString *)dch_imageSignature:(NSDictionary *)dic {
+    NSString *result = nil;
+    do {
+        if (DCH_IsEmpty(dic)) {
+            break;
+        }
+        
+        NSMutableString *tmp = [NSMutableString string];
+        NSNumber *resizeWidth = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeWidth];
+        NSNumber *resizeHeight = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeHeight];
+        NSNumber *resizeScale = [dic objectForKey:key_DCHImageTurbo_UIImage_ResizeScale];
+        if (resizeWidth && resizeHeight && resizeScale) {
+            [tmp appendFormat:@"ResizeW%fH%fS%f", [resizeWidth floatValue], [resizeHeight floatValue], [resizeScale floatValue]];
+        }
+        
+        NSNumber *cornerRadius = [dic objectForKey:key_DCHImageTurbo_UIImage_CornerRadius];
+        if (cornerRadius) {
+            [tmp appendFormat:@"CornerRadius%f", [cornerRadius floatValue]];
+        }
+        
+        UIColor *borderColor = [dic objectForKey:key_DCHImageTurbo_UIImage_BorderColor];
+        NSNumber *borderWidth = [dic objectForKey:key_DCHImageTurbo_UIImage_BorderWidth];
+        if (borderColor && borderWidth) {
+            CGFloat components[4] = {0.0, 0.0, 0.0, 0.0};
+            [borderColor getRed:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
+            [tmp appendFormat:@"BorderColorR%fG:%fB:%fA:%fWidth%f", components[0], components[1], components[2], components[3], [borderWidth floatValue]];
+        }
+        
+        DCHImageBlurRatioRect *blurRatioRect = [dic objectForKey:key_DCHImageTurbo_UIImage_BlurRatioRect];
+        UIColor *blurTintColor = [dic objectForKey:key_DCHImageTurbo_UIImage_BlurTintColor];
+        NSNumber *blurRadius = [dic objectForKey:key_DCHImageTurbo_UIImage_BlurRadius];
+        NSNumber *blurSaturationDeltaFactor = [dic objectForKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];
+        NSUInteger blurMaskImageHash = [[dic objectForKey:key_DCHImageTurbo_UIImage_BlurMaskImage] hash];
+        if (blurTintColor && blurRadius && blurSaturationDeltaFactor) {
+            CGFloat components[4] = {0.0, 0.0, 0.0, 0.0};
+            [blurTintColor getRed:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
+            [tmp appendFormat:@"BlurColorR%fG:%fB:%fA:%fRadius%fSaturationDeltaFactor%fMaskImageHash%lu", components[0], components[1], components[2], components[3], [blurRadius floatValue], [blurSaturationDeltaFactor floatValue], (unsigned long)blurMaskImageHash];
+            if (blurRatioRect) {
+                [tmp appendFormat:@"RatioRectT%fB%fL%fR%f", blurRatioRect.top, blurRatioRect.bottom, blurRatioRect.left, blurRatioRect.right];
+            }
+        }
+        
+        result = [NSString stringWithFormat:@"%lu", (unsigned long)[tmp hash]];
+    } while (NO);
+    return result;
+}
+
 @end

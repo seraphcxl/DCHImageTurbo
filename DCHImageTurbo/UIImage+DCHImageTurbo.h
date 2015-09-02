@@ -27,4 +27,6 @@ extern NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage;  // UIImage
 
 + (NSString *)layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode;
 
++ (NSString *)dch_imageSignature:(NSDictionary *)dic;
+
 @end
