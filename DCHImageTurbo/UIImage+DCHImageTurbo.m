@@ -61,7 +61,7 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
         CGContextRef context1 = UIGraphicsGetCurrentContext();
         CALayer *layer1 = [CALayer layer];
         layer1.frame = (CGRect){CGPointZero, targetSize};
-        layer1.contentsGravity = [UIImage layerContentsGravityFromViewContentMode:contentMode];
+        layer1.contentsGravity = [UIImage dch_layerContentsGravityFromViewContentMode:contentMode];
         layer1.contents = (__bridge id)(image.CGImage);
         [layer1 renderInContext:context1];
         result = UIGraphicsGetImageFromCurrentImageContext();
@@ -82,7 +82,7 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
         CGContextRef context2 = UIGraphicsGetCurrentContext();
         CALayer *layer2 = [CALayer layer];
         layer2.frame = (CGRect){CGPointZero, targetSize};
-        layer2.contentsGravity = [UIImage layerContentsGravityFromViewContentMode:contentMode];
+        layer2.contentsGravity = [UIImage dch_layerContentsGravityFromViewContentMode:contentMode];
         layer2.contents = (__bridge id)(result.CGImage);
         if (!DCH_IsEmpty(cornerRadius)) {
             layer2.cornerRadius = cornerRadius.floatValue;
@@ -99,7 +99,7 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
     return result;
 }
 
-+ (NSString *)layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode {
++ (NSString *)dch_layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode {
     NSString *result = kCAGravityResize;
     switch (viewContentMode) {
         case UIViewContentModeCenter: {
