@@ -10,13 +10,9 @@
 #import <Tourbillon/DCHTourbillon.h>
 #import <Accelerate/Accelerate.h>
 
-@implementation DCHImageBlurRatioRect
-
-@end
-
 @implementation UIImage (DCHImageEffect)
 
-+ (UIImage *)dch_decodedImageWithImage:(UIImage *)image {
++ (instancetype)dch_decodedImageWithImage:(UIImage *)image {
     UIImage *result = nil;
     CGColorSpaceRef colorSpace = NULL;
     CGContextRef context = NULL;
@@ -84,7 +80,7 @@
     return result;
 }
 
-+ (UIImage *)dch_applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut {
++ (instancetype)dch_applyResize:(UIImage *)image toSize:(CGSize)newSize withContentMode:(UIViewContentMode)contentMode allowZoomOut:(BOOL)allowZoomOut {
     UIImage *result = nil;
     CGContextRef bitmapContext = nil;
     CGImageRef scaledImageRef = nil;
@@ -230,18 +226,16 @@
     return result;
 }
 
-+ (UIImage *)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage {
++ (instancetype)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage {
     return [UIImage dch_applyBlur:image withRadius:blurRadius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:maskImage didCancel:^BOOL{ return NO; }];
 }
 
-+ (UIImage *)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
-    DCHImageBlurRatioRect *ratioRect = [[DCHImageBlurRatioRect alloc] init];
-    ratioRect.top = ratioRect.left = 0;
-    ratioRect.bottom = ratioRect.right = 1;
-    return [UIImage dch_applyBlur:image forRect:ratioRect withRadius:blurRadius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:maskImage didCancel:didCancel];
++ (instancetype)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, 1, 1);
+    return [UIImage dch_applyBlur:image forEdgeInsets:edgeInsets withRadius:blurRadius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:maskImage didCancel:didCancel];
 }
 
-+ (UIImage *)dch_applyBlur:(UIImage *)image forRect:(DCHImageBlurRatioRect *)ratioRect withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
++ (instancetype)dch_applyBlur:(UIImage *)image forEdgeInsets:(UIEdgeInsets)edgeInsets withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
     UIImage *result = nil;
     do {
         if (!image || !image.CGImage || image.size.width < 1 || image.size.height < 1) {
@@ -250,9 +244,18 @@
         
         @autoreleasepool {
             CGRect imageRect = {CGPointZero, image.size};
-            CGPoint imageBlurOrigin = CGPointMake(image.size.width * ratioRect.left, image.size.height * (1 - ratioRect.top));
-            CGSize imageBlurSize = CGSizeMake(image.size.width * ratioRect.right - imageBlurOrigin.x, image.size.height * (1 - ratioRect.bottom) - imageBlurOrigin.y);
+            CGPoint imageBlurOrigin = CGPointMake(edgeInsets.left, edgeInsets.bottom);
+            imageBlurOrigin.x = MAX(imageBlurOrigin.x, 0);
+            imageBlurOrigin.y = MAX(imageBlurOrigin.y, 0);
+            imageBlurOrigin.x = MIN(imageBlurOrigin.x, imageRect.size.width);
+            imageBlurOrigin.y = MIN(imageBlurOrigin.y, imageRect.size.height);
+            
+            CGSize imageBlurSize = CGSizeMake(image.size.width - edgeInsets.right - imageBlurOrigin.x, image.size.height - edgeInsets.top - imageBlurOrigin.y);
+            imageBlurSize.width = MAX(imageBlurSize.width, 0);
+            imageBlurSize.height = MAX(imageBlurSize.height, 0);;
+            
             CGRect imageBlurRect = {imageBlurOrigin, imageBlurSize};
+            
             UIImage *effectImage = image;
             
             BOOL hasBlur = blurRadius > __FLT_EPSILON__;
@@ -390,7 +393,7 @@
     return result;
 }
 
-+ (UIImage *)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius {
++ (instancetype)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius {
     UIImage *result = nil;
     do {
         if (!image) {
@@ -403,6 +406,29 @@
         [ciGaussianBlurFilter setValue:@(blurRadius) forKey:kCIInputRadiusKey];
         CGImageRef cgImage = [ciContent createCGImage:ciGaussianBlurFilter.outputImage fromRect:ciImage.extent];
         result = [UIImage imageWithCGImage:cgImage];
+    } while (NO);
+    return result;
+}
+
+#pragma mark - image with color
++ (instancetype)dch_imageWithColor:(UIColor *)color size:(CGSize)size {
+    UIImage *result = nil;
+    do {
+        if (DCH_IsEmpty(color) || size.width == 0 || size.height == 0) {
+            break;
+        }
+        
+        CGRect rect = CGRectMake(0, 0, size.width, size.height);
+        
+        // Create a context depending on given size
+        UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+        
+        // Fill it with your color
+        [color setFill];
+        UIRectFill(rect);
+        
+        result = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     } while (NO);
     return result;
 }

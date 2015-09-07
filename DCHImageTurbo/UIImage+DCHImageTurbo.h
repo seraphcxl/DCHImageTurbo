@@ -14,7 +14,7 @@ extern NSString * const key_DCHImageTurbo_UIImage_ResizeScale;  // NSNumber
 extern NSString * const key_DCHImageTurbo_UIImage_CornerRadius;  // NSNumber
 extern NSString * const key_DCHImageTurbo_UIImage_BorderColor;  // UIColor
 extern NSString * const key_DCHImageTurbo_UIImage_BorderWidth;  // NSNumber
-extern NSString * const key_DCHImageTurbo_UIImage_BlurRatioRect;  // DCHImageBlurRatioRect
+extern NSString * const key_DCHImageTurbo_UIImage_BlurEdgeInsets;  // DCHImageBlurRatioRect
 extern NSString * const key_DCHImageTurbo_UIImage_BlurRadius;  // NSNumber
 extern NSString * const key_DCHImageTurbo_UIImage_BlurTintColor;  // UIColor
 extern NSString * const key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor;  // NSNumber
@@ -23,8 +23,10 @@ extern NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage;  // UIImage
 @interface UIImage (DCHImageTurbo)
 
 #pragma mark - customize
-+ (UIImage *)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
++ (instancetype)dch_customizeImage:(UIImage *)image withParams:(NSDictionary *)paramsDic contentMode:(UIViewContentMode)contentMode;
 
-+ (NSString *)layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode;
++ (NSString *)dch_layerContentsGravityFromViewContentMode:(UIViewContentMode)viewContentMode;
+
++ (NSString *)dch_imageSignature:(NSDictionary *)dic;
 
 @end
