@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DCHImageTurbo"
-  s.version      = "1.0.6"
+  s.version      = "1.0.7"
   s.summary      = "Asynchronous Image loader with cache support."
 
   s.description  = <<-DESC
