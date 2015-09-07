@@ -10,10 +10,6 @@
 #import <Tourbillon/DCHTourbillon.h>
 #import <Accelerate/Accelerate.h>
 
-@implementation DCHImageBlurRatioRect
-
-@end
-
 @implementation UIImage (DCHImageEffect)
 
 + (instancetype)dch_decodedImageWithImage:(UIImage *)image {
@@ -235,13 +231,11 @@
 }
 
 + (instancetype)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
-    DCHImageBlurRatioRect *ratioRect = [[DCHImageBlurRatioRect alloc] init];
-    ratioRect.top = ratioRect.left = 0;
-    ratioRect.bottom = ratioRect.right = 1;
-    return [UIImage dch_applyBlur:image forRect:ratioRect withRadius:blurRadius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:maskImage didCancel:didCancel];
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, 1, 1);
+    return [UIImage dch_applyBlur:image forEdgeInsets:edgeInsets withRadius:blurRadius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:maskImage didCancel:didCancel];
 }
 
-+ (instancetype)dch_applyBlur:(UIImage *)image forRect:(DCHImageBlurRatioRect *)ratioRect withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
++ (instancetype)dch_applyBlur:(UIImage *)image forEdgeInsets:(UIEdgeInsets)edgeInsets withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel {
     UIImage *result = nil;
     do {
         if (!image || !image.CGImage || image.size.width < 1 || image.size.height < 1) {
@@ -250,9 +244,18 @@
         
         @autoreleasepool {
             CGRect imageRect = {CGPointZero, image.size};
-            CGPoint imageBlurOrigin = CGPointMake(image.size.width * ratioRect.left, image.size.height * (1 - ratioRect.top));
-            CGSize imageBlurSize = CGSizeMake(image.size.width * ratioRect.right - imageBlurOrigin.x, image.size.height * (1 - ratioRect.bottom) - imageBlurOrigin.y);
+            CGPoint imageBlurOrigin = CGPointMake(edgeInsets.left, edgeInsets.bottom);
+            imageBlurOrigin.x = MAX(imageBlurOrigin.x, 0);
+            imageBlurOrigin.y = MAX(imageBlurOrigin.y, 0);
+            imageBlurOrigin.x = MIN(imageBlurOrigin.x, imageRect.size.width);
+            imageBlurOrigin.y = MIN(imageBlurOrigin.y, imageRect.size.height);
+            
+            CGSize imageBlurSize = CGSizeMake(image.size.width - edgeInsets.right - imageBlurOrigin.x, image.size.height - edgeInsets.top - imageBlurOrigin.y);
+            imageBlurSize.width = MAX(imageBlurSize.width, 0);
+            imageBlurSize.height = MAX(imageBlurSize.height, 0);;
+            
             CGRect imageBlurRect = {imageBlurOrigin, imageBlurSize};
+            
             UIImage *effectImage = image;
             
             BOOL hasBlur = blurRadius > __FLT_EPSILON__;

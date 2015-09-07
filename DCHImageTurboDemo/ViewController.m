@@ -30,11 +30,7 @@
     imgView.frame = CGRectMake(0, 0, 300, 300);
     imgView.center = self.view.center;
     
-    DCHImageBlurRatioRect *ratioRect = [[DCHImageBlurRatioRect alloc] init];
-    ratioRect.top = 0.8;
-    ratioRect.left = 0.0;
-    ratioRect.bottom = 1.0;
-    ratioRect.right = 1.0;
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(imgView.bounds.size.height * 0.4, imgView.bounds.size.width * 0.2, imgView.bounds.size.height * 0.2, imgView.bounds.size.width * 0.4);
     
     [imgView dch_setImageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"梵高_向日葵" ofType:@"jpg"] placeholderImage:nil customize:^NSDictionary *{
         NSMutableDictionary *result = [NSMutableDictionary dictionary];
@@ -44,7 +40,7 @@
         [result dch_safe_setObject:@(24) forKey:key_DCHImageTurbo_UIImage_CornerRadius];
         [result dch_safe_setObject:@(2) forKey:key_DCHImageTurbo_UIImage_BorderWidth];
         [result dch_safe_setObject:[UIColor aquaColor] forKey:key_DCHImageTurbo_UIImage_BorderColor];
-        [result dch_safe_setObject:ratioRect forKey:key_DCHImageTurbo_UIImage_BlurRatioRect];
+        [result dch_safe_setObject:[NSValue valueWithUIEdgeInsets:edgeInsets] forKey:key_DCHImageTurbo_UIImage_BlurEdgeInsets];
         [result dch_safe_setObject:@(8) forKey:key_DCHImageTurbo_UIImage_BlurRadius];
         [result dch_safe_setObject:[UIColor colorWithWhite:0 alpha:0.2] forKey:key_DCHImageTurbo_UIImage_BlurTintColor];
         [result dch_safe_setObject:@(1) forKey:key_DCHImageTurbo_UIImage_BlurSaturationDeltaFactor];

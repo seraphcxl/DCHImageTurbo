@@ -8,15 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DCHImageBlurRatioRect : NSObject
-
-@property(nonatomic, assign) float top;
-@property(nonatomic, assign) float bottom;
-@property(nonatomic, assign) float left;
-@property(nonatomic, assign) float right;
-
-@end
-
 @interface UIImage (DCHImageEffect)
 
 #pragma mark - Decode
@@ -30,7 +21,7 @@
 
 + (instancetype)dch_applyBlur:(UIImage *)image withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel;
 
-+ (instancetype)dch_applyBlur:(UIImage *)image forRect:(DCHImageBlurRatioRect *)ratioRect withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel;
++ (instancetype)dch_applyBlur:(UIImage *)image forEdgeInsets:(UIEdgeInsets)edgeInsets withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage didCancel:(BOOL (^)())didCancel;
 
 + (instancetype)dch_applyGaussianBlur:(UIImage *)image withRadius:(CGFloat)blurRadius;
 
