@@ -26,8 +26,6 @@ extern NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage;
 - (CGFloat)dch_frameHeight;
 - (CGFloat)dch_screenScale;
 
-- (NSString *)dch_imageSignature:(NSDictionary *)dic;
-
 - (void)dch_loadImageFormCacheForKey:(NSString *)key fromDisk:(BOOL)fromDisk completed:(DCHImageTurboLoadImageFromCacheCompletionBlock)completion;
 
 - (void)dch_loadImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options customize:(DCHImageTurboCustomizeBlock)customization uiRender:(DCHImageTurboUIRenderBlock)uiRender operationHandler:(DCHImageTurboOperationHandlerBlock)operationHandler progress:(SDWebImageDownloaderProgressBlock)progress completed:(DCHImageTurboLoadImageCompletionBlock)completion;
