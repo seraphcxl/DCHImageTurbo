@@ -381,7 +381,7 @@
             if (tintColor) {
                 CGContextSaveGState(outputContext);
                 CGContextSetFillColorWithColor(outputContext, tintColor.CGColor);
-                CGContextFillRect(outputContext, imageRect);
+                CGContextFillRect(outputContext, imageBlurRect);
                 CGContextRestoreGState(outputContext);
             }
             

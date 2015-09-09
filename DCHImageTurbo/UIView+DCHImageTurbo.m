@@ -254,7 +254,7 @@ NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage = @"key_DCHImageT
                                 break;
                             }
                             
-                            [[SDImageCache sharedImageCache] storeImage:decompressedImage recalculateFromImage:NO imageData:nil forKey:customizedImageKey toDisk:NO];
+                            [[SDImageCache sharedImageCache] storeImage:decompressedImage recalculateFromImage:NO imageData:nil forKey:path toDisk:NO];
                             
                             if (operation.isCanceled) {
                                 break;
@@ -273,7 +273,7 @@ NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage = @"key_DCHImageT
                                 UIImage *customizedImage = [UIImage dch_customizeImage:decompressedImage withParams:customizeParamsDic contentMode:self.contentMode];
                                 if (customizedImage) {
                                     if (customizedImage) {
-                                        [[SDImageCache sharedImageCache] storeImage:customizedImage recalculateFromImage:NO imageData:nil forKey:customizedImageKey toDisk:NO];
+                                        [[SDImageCache sharedImageCache] storeImage:customizedImage recalculateFromImage:NO imageData:nil forKey:customizedImageKey toDisk:YES];
                                     }
                                     
                                     [NSThread dch_runInMain:^{
