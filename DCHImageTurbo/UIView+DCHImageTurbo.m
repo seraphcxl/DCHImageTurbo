@@ -184,7 +184,7 @@ NSString * const key_DCHImageTurbo_UIView_ImageLocationStorage = @"key_DCHImageT
             }
             customizedImageKey = [NSString stringWithFormat:@"%@_%@", path, [UIImage dch_imageSignature:customizeParamsDic]];
             @weakify(self)
-            [self dch_loadImageFormCacheForKey:customizedImageKey fromDisk:NO completed:^(UIImage *image, NSError *error, NSString *key, SDImageCacheType cacheType) {
+            [self dch_loadImageFormCacheForKey:customizedImageKey fromDisk:YES completed:^(UIImage *image, NSError *error, NSString *key, SDImageCacheType cacheType) {
                 do {
                     if (error && !DCH_IsEmpty(key)) {
                         [NSThread dch_runInMain:^{
