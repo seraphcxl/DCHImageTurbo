@@ -262,26 +262,24 @@
             BOOL hasSaturationChange = fabs(saturationDeltaFactor - 1.) > __FLT_EPSILON__;
             
             if (hasBlur || hasSaturationChange) {
-                UIGraphicsBeginImageContextWithOptions(image.size, NO, [[UIScreen mainScreen] scale]);
+                UIGraphicsBeginImageContextWithOptions(imageBlurRect.size, NO, [[UIScreen mainScreen] scale]);
                 CGContextRef effectInContext = UIGraphicsGetCurrentContext();
                 CGContextScaleCTM(effectInContext, 1.0, -1.0);
-                CGContextTranslateCTM(effectInContext, 0, -image.size.height);
-                CGContextDrawImage(effectInContext, imageBlurRect, image.CGImage);
-                
+                CGContextTranslateCTM(effectInContext, 0, -imageBlurRect.size.height);
+                CGContextDrawImage(effectInContext, imageRect, image.CGImage);
                 vImage_Buffer effectInBuffer;
                 effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
                 effectInBuffer.width    = CGBitmapContextGetWidth(effectInContext);
                 effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
                 effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
                 
-                UIGraphicsBeginImageContextWithOptions(image.size, NO, [[UIScreen mainScreen] scale]);
+                UIGraphicsBeginImageContextWithOptions(imageBlurRect.size, NO, [[UIScreen mainScreen] scale]);
                 CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
                 vImage_Buffer effectOutBuffer;
                 effectOutBuffer.data     = CGBitmapContextGetData(effectOutContext);
                 effectOutBuffer.width    = CGBitmapContextGetWidth(effectOutContext);
                 effectOutBuffer.height   = CGBitmapContextGetHeight(effectOutContext);
                 effectOutBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectOutContext);
-                
                 
                 if (hasBlur) {
                     // A description of how to compute the box kernel width from the Gaussian
@@ -373,7 +371,7 @@
                 if (maskImage) {
                     CGContextClipToMask(outputContext, imageRect, maskImage.CGImage);
                 }
-                CGContextDrawImage(outputContext, imageRect, effectImage.CGImage);
+                CGContextDrawImage(outputContext, imageBlurRect, effectImage.CGImage);
                 CGContextRestoreGState(outputContext);
             }
             
