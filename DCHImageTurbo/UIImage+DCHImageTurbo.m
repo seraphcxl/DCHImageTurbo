@@ -198,7 +198,7 @@ NSString * const key_DCHImageTurbo_UIImage_BlurMaskImage = @"key_DCHImageTurbo_U
             }
         }
         
-        result = [NSString stringWithFormat:@"%lu", (unsigned long)[tmp hash]];
+        result = [tmp dch_md5String];
     } while (NO);
     return result;
 }

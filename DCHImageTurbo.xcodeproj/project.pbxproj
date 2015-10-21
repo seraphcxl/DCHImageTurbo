@@ -16,6 +16,8 @@
 		8D1DB2971B690B2F000B7953 /* UIImageView+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D4695001B675670000EFE53 /* UIImageView+DCHImageTurbo.h */; };
 		8D1DB2981B690B2F000B7953 /* UIButton+DCHImageTurbo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D4695031B67567E000EFE53 /* UIButton+DCHImageTurbo.h */; };
 		8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */; };
+		8D4182011BD37597009C5E91 /* CCBufferedImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4181F71BD37597009C5E91 /* CCBufferedImageDecoder.m */; settings = {ASSET_TAGS = (); }; };
+		8D4182021BD37597009C5E91 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4182001BD37597009C5E91 /* libturbojpeg.a */; settings = {ASSET_TAGS = (); }; };
 		8D4694FF1B672D5D000EFE53 /* UIImage+DCHImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4694FE1B672D5D000EFE53 /* UIImage+DCHImageEffect.m */; };
 		8D4695021B675670000EFE53 /* UIImageView+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4695011B675670000EFE53 /* UIImageView+DCHImageTurbo.m */; };
 		8D4695051B67567E000EFE53 /* UIButton+DCHImageTurbo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4695041B67567E000EFE53 /* UIButton+DCHImageTurbo.m */; };
@@ -92,6 +94,14 @@
 		8D200B511B3C500B004DC94B /* DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageTurbo.h; sourceTree = "<group>"; };
 		8D200B521B3C5090004DC94B /* DCHImageTurboCommonConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHImageTurboCommonConstants.h; sourceTree = "<group>"; };
 		8D200B531B3C5090004DC94B /* DCHImageTurboCommonConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHImageTurboCommonConstants.m; sourceTree = "<group>"; };
+		8D4181F61BD37597009C5E91 /* CCBufferedImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBufferedImageDecoder.h; sourceTree = "<group>"; };
+		8D4181F71BD37597009C5E91 /* CCBufferedImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBufferedImageDecoder.m; sourceTree = "<group>"; };
+		8D4181FA1BD37597009C5E91 /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
+		8D4181FB1BD37597009C5E91 /* jerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jerror.h; sourceTree = "<group>"; };
+		8D4181FC1BD37597009C5E91 /* jmorecfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmorecfg.h; sourceTree = "<group>"; };
+		8D4181FD1BD37597009C5E91 /* jpeglib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeglib.h; sourceTree = "<group>"; };
+		8D4181FE1BD37597009C5E91 /* turbojpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = turbojpeg.h; sourceTree = "<group>"; };
+		8D4182001BD37597009C5E91 /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
 		8D4694FD1B672D5D000EFE53 /* UIImage+DCHImageEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DCHImageEffect.h"; sourceTree = "<group>"; };
 		8D4694FE1B672D5D000EFE53 /* UIImage+DCHImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DCHImageEffect.m"; sourceTree = "<group>"; };
 		8D4695001B675670000EFE53 /* UIImageView+DCHImageTurbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DCHImageTurbo.h"; sourceTree = "<group>"; };
@@ -131,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D4182021BD37597009C5E91 /* libturbojpeg.a in Frameworks */,
 				F5F46632F69C60D837CCDEC9 /* libPods-DCHImageTurbo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,9 +184,49 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D4181F51BD37597009C5E91 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				8D4181F61BD37597009C5E91 /* CCBufferedImageDecoder.h */,
+				8D4181F71BD37597009C5E91 /* CCBufferedImageDecoder.m */,
+				8D4181F81BD37597009C5E91 /* libjpeg-turbo */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		8D4181F81BD37597009C5E91 /* libjpeg-turbo */ = {
+			isa = PBXGroup;
+			children = (
+				8D4181F91BD37597009C5E91 /* include */,
+				8D4181FF1BD37597009C5E91 /* lib */,
+			);
+			path = "libjpeg-turbo";
+			sourceTree = "<group>";
+		};
+		8D4181F91BD37597009C5E91 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				8D4181FA1BD37597009C5E91 /* jconfig.h */,
+				8D4181FB1BD37597009C5E91 /* jerror.h */,
+				8D4181FC1BD37597009C5E91 /* jmorecfg.h */,
+				8D4181FD1BD37597009C5E91 /* jpeglib.h */,
+				8D4181FE1BD37597009C5E91 /* turbojpeg.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		8D4181FF1BD37597009C5E91 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				8D4182001BD37597009C5E91 /* libturbojpeg.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		8DBAA7171B3BE8E20024A0F3 = {
 			isa = PBXGroup;
 			children = (
+				8D4181F51BD37597009C5E91 /* Vendor */,
 				8DBAA7221B3BE8E20024A0F3 /* DCHImageTurbo */,
 				8DBAA72F1B3BE8E20024A0F3 /* DCHImageTurboTests */,
 				8DDD7A5A1B3D17BF007A0963 /* DCHImageTurboDemo */,
@@ -337,6 +388,7 @@
 				8DDD7A561B3D17BF007A0963 /* Frameworks */,
 				8DDD7A571B3D17BF007A0963 /* Resources */,
 				4C4B506B22574A51544EBC1B /* Copy Pods Resources */,
+				6180DFAD66057599CE8D0528 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -470,6 +522,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DCHImageTurbo/Pods-DCHImageTurbo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6180DFAD66057599CE8D0528 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DCHImageTurboDemo/Pods-DCHImageTurboDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8B4F220D584599A8C05BEDA3 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -511,6 +578,7 @@
 				8D200B541B3C5090004DC94B /* DCHImageTurboCommonConstants.m in Sources */,
 				8DDD7A8A1B3D45AE007A0963 /* DCHLoadLocalImageOperation.m in Sources */,
 				8DADCC251B40D58F00A2CEA5 /* DCHFileMappingImage.m in Sources */,
+				8D4182011BD37597009C5E91 /* CCBufferedImageDecoder.m in Sources */,
 				8D682B751B4012E300EAFD23 /* UIImage+DCHImageTurbo.m in Sources */,
 				8D4694FF1B672D5D000EFE53 /* UIImage+DCHImageEffect.m in Sources */,
 				8D4695051B67567E000EFE53 /* UIButton+DCHImageTurbo.m in Sources */,
@@ -666,6 +734,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B93A8BE13D3465168264080 /* Pods-DCHImageTurbo.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/libjpeg-turbo/lib",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
@@ -677,6 +750,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48276C4CF3CA5BA4555F5499 /* Pods-DCHImageTurbo.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/libjpeg-turbo/lib",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
@@ -687,6 +765,7 @@
 		8DBAA7381B3BE8E20024A0F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -706,6 +785,7 @@
 		8DBAA7391B3BE8E20024A0F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -724,6 +804,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -743,6 +824,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DCHImageTurboDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -756,6 +838,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -776,6 +859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
