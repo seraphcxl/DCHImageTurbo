@@ -61,12 +61,12 @@ static void DCHFileMappingImageReleaseImageData(void *info, const void *data, si
     CGDataProviderRef dataProvider = NULL;
     CGImageRef imageRef = NULL;
     do {
-        self.fileDescriptor = open([path fileSystemRepresentation], (O_RDWR | O_CREAT), 0666);
+        self.fileDescriptor = open([path fileSystemRepresentation], (O_RDONLY), 0666);
         if (self.fileDescriptor < 0) {
             break;
         }
         self.fileLength = lseek(self.fileDescriptor, 0, SEEK_END);
-        self.bytes = mmap(NULL, (size_t)self.fileLength, (PROT_READ|PROT_WRITE), (MAP_FILE|MAP_SHARED), self.fileDescriptor, 0);
+        self.bytes = mmap(NULL, (size_t)self.fileLength, (PROT_READ), (MAP_FILE | MAP_SHARED), self.fileDescriptor, 0);
         
         dataProvider = CGDataProviderCreateWithData(NULL, self.bytes, (size_t)self.fileLength, DCHFileMappingImageReleaseImageData);
         switch (type) {
