@@ -39,7 +39,7 @@ NSString * const key_DCHImageTurbo_UIButton_LocalBackgroundImageLoadOperation = 
     NSMutableDictionary *storage = [[self getImageLocationStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIButton_WebImageURLStorage];
     if (!storage) {
         storage = [NSMutableDictionary dictionary];
-        objc_setAssociatedObject(self, &key_DCHImageTurbo_UIButton_WebImageURLStorage, storage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [[self getImageLocationStorage] dch_safe_setObject:storage forKey:key_DCHImageTurbo_UIButton_WebImageURLStorage];
     }
     return storage;
 }
@@ -64,7 +64,7 @@ NSString * const key_DCHImageTurbo_UIButton_LocalBackgroundImageLoadOperation = 
             break;
         }
         NSMutableDictionary *storage = [self dch_webImageURLStorage];
-        if (DCH_IsEmpty(storage)) {
+        if (!storage) {
             break;
         }
         [storage dch_safe_setObject:url forKey:@(state)];
@@ -176,7 +176,7 @@ NSString * const key_DCHImageTurbo_UIButton_LocalBackgroundImageLoadOperation = 
     NSMutableDictionary *storage = [[self getImageLocationStorage] dch_safe_objectForKey:key_DCHImageTurbo_UIButton_WebBackgroundImageURLStorage];
     if (!storage) {
         storage = [NSMutableDictionary dictionary];
-        objc_setAssociatedObject(self, &key_DCHImageTurbo_UIButton_WebBackgroundImageURLStorage, storage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [[self getImageLocationStorage] dch_safe_setObject:storage forKey:key_DCHImageTurbo_UIButton_WebBackgroundImageURLStorage];
     }
     return storage;
 }
@@ -201,7 +201,7 @@ NSString * const key_DCHImageTurbo_UIButton_LocalBackgroundImageLoadOperation = 
             break;
         }
         NSMutableDictionary *storage = [self dch_webBackgroundImageURLStorage];
-        if (DCH_IsEmpty(storage)) {
+        if (!storage) {
             break;
         }
         [storage dch_safe_setObject:url forKey:@(state)];
